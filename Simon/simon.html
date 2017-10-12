@@ -1,0 +1,82 @@
+<html>
+<head>
+<meta content-type='text/html' charset='utf-8'>
+<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+<script type='text/javascript' src='simon.js'></script>
+<link rel='stylesheet' type='text/css' href='simon.css'>
+</head>
+
+<body>
+   <div id="wrapper">
+  <p><i>how to play: repeat the sequence with aroows or mouse</i>
+  </p>
+  <svg id ="swag_buttons" 
+         viewBox="0 0 140 150"
+         xmlns="http://www.w3.org/2000/svg" >
+    <g transform="translate(10 10)">
+      
+      <defs>                                                                  <!--shadow-->
+        <filter id="shadow" y="-80%" x="-80%" height="200%" width="200%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="6.6"/>
+          <feOffset dx="0" dy="0"/>
+          <feMerge>
+            <feMergeNode/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+      <circle id="base" cx="60" cy="60" r="55" fill="grey" style="filter: url(#shadow);"  />
+    
+      
+        <path class="green forButtons" d="M10 60
+               A 50 50, 0, 0, 0, 60 110
+               L 60 80 
+               A 20 20, 0, 0, 1, 40 60
+               L 10 60 Z" fill="green" stroke="grey" stroke-width="1" transform="rotate(45, 60 60)"/>
+        <polygon class="green forArrows" points="20,60  30,70 30,50" fill="green" style="stroke:black;stroke-width:0.5"/>
+      
+        <path class="red forButtons" d="M10 60
+               A 50 50, 0, 0, 1, 60 10
+               L 59 40 
+               A 20 20, 0, 0, 0, 40 60
+               L 10 60 Z" fill="red" stroke="grey" stroke-width="1" transform="rotate(45, 60 60)"/>
+        <polygon class="red forArrows" points="50,30  70,30 60,20" fill="red"  style="stroke:black;stroke-width:0.5"/>
+      
+        <path class="yellow forButtons" d="M110 60
+               A 50 50, 0, 0, 0, 60 10
+               L 59 40 
+               A 20 20, 0, 0, 1, 80 60
+               L 110 60 Z" fill="yellow" stroke="grey" stroke-width="1" transform="rotate(45, 60 60)"/>
+        <polygon class="yellow forArrows" points="90,50 100,60 90,70" fill="yellow" style="stroke:black;stroke-width:0.5"/>
+      
+        <path class="blue forButtons" d="M110 60
+                 A 50 50, 0, 0, 1, 60 110
+                 L 60 80 
+                 A 20 20, 0, 0, 0, 80 60
+                 L 110 60 Z" fill="blue" stroke="grey" stroke-width="1" transform="rotate(45, 60 60)"/>
+          <polygon class="blue forArrows"  points="50,90 70,90 60,100" fill="blue" style="stroke:black;stroke-width:0.5"/>
+      
+      
+      
+      <foreignObject x="45" y="55" width="90" height="120" transform="scale(0.3) translate(110, 100)" style="text-align: center;">
+       <body xmlns="http://www.w3.org/1999/xhtml">
+        
+         <button id ="start">START</button><br>
+         <label  class="container" >strict
+           <input id="strict" type="checkbox">
+           <span class="checkmark"></span>
+         </label>
+         <input type="text" id="count" readonly><br>
+         <!--<button id = "stop">STOP</button>-->	
+          
+        </body>
+      </foreignObject>
+      
+    </g>    
+  </svg>
+</div>
+
+    
+  
+</body>
+</html>
