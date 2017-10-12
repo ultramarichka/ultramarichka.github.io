@@ -1,0 +1,41 @@
+.background {
+  background-image: url("http://i68.tinypic.com/20v18i0.jpg");
+  background-repeat: no-repeat;
+  background-position: center; 
+  background-attachment: fixed;
+  background-size: cover;
+  min-height: 100vh;
+  opacity: 0.9;
+}
+#content{
+ margin-top: 10%;
+}
+
+#result div { 
+  background-color: white;
+  opacity: 0.9;   
+}
+
+h2{
+  padding-left: 30px;
+  padding-top: 30px;
+} 
+.snippet{
+ padding-left: 30px;
+ padding-bottom: 30px;
+}
+#result a {
+ text-align: left;
+ color:black;
+}
+#result a :hover {
+  opacity: 1;
+}
+#result a :active{
+  color: blue;
+}
+label, input, #searchButton {
+  display: inline-block;
+}
+
+
