@@ -25,7 +25,7 @@ function getsWikiArticle(){
   var yourQuery = $("#queryWiki").val();
   // use generator to get data about a set of pages that would be the result of two different API calls --> http://en.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch= --> here i'm searshing for title and snippet 
   //                                                                                                     + I need another API call to get url of set of pages ofr making links   
-  var url = "http://en.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch=" + yourQuery;
+  var url = "https://en.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch=" + yourQuery;
   //CORS (Cross-Origin Request Smth) --> solved with JSONP <-- "&callback=?" in url
   var response = $.getJSON(url + "&callback=?", successCallback);
   response.fail(errorFunc); 
