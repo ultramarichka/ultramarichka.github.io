@@ -1,0 +1,46 @@
+.background {
+  background-image: url(http://i68.tinypic.com/bgvkfc.jpg);
+  background-repeat: no-repeat;
+  background-position: center; 
+  background-attachment: fixed;
+  background-size: cover;
+  min-height: 100vh;
+}
+#quotes {
+    margin-top: 10%;
+    margin-bottom: 5%;
+    position: center;
+    padding: 25px;
+
+    border: 3px solid #73AD21;
+    border-radius: 25px;
+   
+}
+#Vkontakte {
+  background-color: #45668e;
+  color: #FFF;
+}
+#quote_button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.3), 0 17px 50px 0 rgba(0,0,0,0.19); 
+  color:#fff;
+background-color:#232323;
+text-shadow: 0 0 15px #fff, 0 0 20px #49ff18, 0 0 30px #49ff18, 0 0 40px #49ff18;
+  border: none;
+}
+ button:focus{
+ outline:none !important;
+ }
+.buttons:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,2), 0 17px 50px 0 rgba(0,0,0,2);  
+}
+#citation {
+  color: #fff;
+  font-size: 30px;
+  
+}
+.author {
+  color: white;
+  font-style: italic;
+  text-align: right;
+  font-size: 25px;
+}
