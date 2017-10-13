@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Weather Application</title>
+  <meta content-type="text/html" charset="utf-8">
+  
+  <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Lobster'>
+
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+  <div class="container-fluid">
+  <div id="background" class="row">
+
+    <h1>Weather Application</h1>
+    <h3>Current weather in your city</br>(or enter the city:)
+    </h3>
+
+    <div class="row">
+      <input id="cities" type="text"> 
+      <button id="get_weather">Get weather</button> 
+    </div>
+
+    <div class="row">
+      <div id="temp"></div>  
+      <button id="convertTemp">Convert to Fahrenheit</button>
+    </div>
+
+    <img id="icon" src="">
+
+  </div>
+</div>
+  <script src='http://ultramarina.eu/add/city.list.json'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+
+    <script  src="js/index.js"></script>
+
+</body>
+</html>

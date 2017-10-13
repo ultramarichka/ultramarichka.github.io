@@ -113,4 +113,3 @@ $("#get_weather").click(buttonCallback);
 // converto between F and C
 $("#convertTemp").click(convertTempButtonCallback);
 });
-
