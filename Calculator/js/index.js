@@ -144,7 +144,7 @@ $(document).ready(function(){
  
   var audioElement = document.createElement('audio');
     audioElement.setAttribute('src',
-'https://ultramarichka.github.io/Kraftwerk-Pocket_calculator.mp3');
+'https://ultramarichka.github.io/Calculator/calc.mp3');
 
    
   var flagPlay = true;
