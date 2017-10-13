@@ -1,0 +1,50 @@
+#slider {
+  z-index: 1;
+}
+
+#slider .rs-range-color {   /*to chto uze 'projdeno' ne budet prohoditsja*/
+  background: green;
+}
+#slider .rs-path-color {     /*to chto ostalos projti*/
+    background-color: white;
+}
+#slider .rs-handle  {
+    padding: 3px;
+    border: 2px solid grey;
+}
+#slider .rs-handle:after  {
+    background-color: green;
+}
+#slider .rs-bg-color {
+  background-image: url("http://i66.tinypic.com/2822tt3.jpg");
+  background-size: cover;
+}
+
+#slider .rs-border.rs-outer  {
+    border-width: 2px;    
+}
+#slider .rs-border.rs-inner  {
+   border-width: 2px;
+   border-color: grey;
+}
+
+#slider .rs-tooltip {
+    top: 60px;
+}
+#slider .rs-tooltip-text {
+    font-size: 25px;
+}
+#reset {
+  position: absolute;
+  left: 35%;
+  right: 35%;
+  bottom: 15%;
+  z-index: 5;
+  background-color: green;
+  color: white;
+  border-color: #3f3f3f;
+  width: 30%;
+}
+#reset:focus{
+ outline:none !important;
+ }
