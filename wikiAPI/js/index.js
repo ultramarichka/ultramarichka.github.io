@@ -44,4 +44,4 @@ function pressingEnterFunc(event){
 $("#queryWiki").keypress(pressingEnterFunc); 
 $("#searchButton").click(getsWikiArticle); 
  
-});  
+});
