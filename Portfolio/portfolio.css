@@ -24,7 +24,8 @@ h1 {
   min-height: 100vh;
 }
 #Home{ 
-  background-image: url(https://ultramarichka.github.io/Portfolio/backgrounds/b1.jpg);
+  background-image: url(backgrounds/b1_bright_127.jpg);
+  background-opacity: 0.6;
   padding: 20% 0 25% 0;
   }
 #About {
