@@ -160,18 +160,7 @@ $(document).ready(function(){
   }
   
   /*
-  function pressingEnterFunc(event){
-    var charCodes = {'0' : '48'};
-    for (var key in charCodes){
-      if(event.keyCode == 13){ 
-        $("#"+ actionObj[key]).click(makeActionCallback(key));
-      }   
-    }
-  }
   
- $("#channel").keypress(pressingEnterFunc); 
-  
- 
   var numbersCodes = {'0' : '96',
                         '1': '97',
                         '2' : '98',
@@ -182,17 +171,41 @@ $(document).ready(function(){
                         '7': '103',
                         '8' : '104',
                         '9': '105'};
-  function pressingNumberFunc(event){
+  
+  var numbersCodes = {'0' : '48',
+                        '1': '49',
+                        '2' : '50',
+                        '3': '51',
+                        '4' : '52',
+                        '5': '53',
+                        '6' : '54',
+                        '7': '55',
+                        '8' : '56',
+                        '9': '57'};
+  function pressingNumberFunc(e){
+    //e = e || window.event;
     console.log('kuku');
     for (var key in numbersCodes){
-      if(event.keyCode == Number(numbersCodes[key])){ 
-        makeCallback(Number(key));
-      }
+	    if(e.originalEvent.key == Number(key)){ 
+        console.log(e.originalEvent.key);
+	      makeCallback(Number(key))();
+	    }
+    }
+  }*/
+
+  var numbersArr = [0,1,2,3,4,5,6,7,8,9];
+
+  function pressingNumberFunc(e){
+    for (var i=0; i<numbersArr.length; i++){
+	    if(e.originalEvent.key == numbersArr[i]){ 
+        console.log(e.originalEvent.key);
+	      makeCallback(numbersArr[i])();
+	    }
     }
   }
-  for (var key in numbersCodes){
-    $("#"+ key).keypress("pressingNumberFunc");
-  }*/
+  //on press gets the event of a pressed element
+  $(document).keypress(pressingNumberFunc);
+  
   
   for (var id = 0; id <= 9; id++){
     var numberHandlerFunction = makeCallback(id);
@@ -210,5 +223,7 @@ $(document).ready(function(){
   $("#ac").click(cleanAll);
   $("#c").click(cleanInput);
   $('#play').click(music);
+  
+  //$(document).keydown(bindKeys);
   
 });
