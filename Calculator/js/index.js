@@ -4,9 +4,9 @@ $(document).ready(function(){
   var numberFlag = "";  // if empty previous click was action
   var actionFlag = "";
   
-  var actionObj = {"+" : "plus",
-                   "-": "minus",
-                   "*" : "multiple",
+  var actionObj = {"+" : "add",
+                   "-": "subtract",
+                   "*" : "multiply",
                    "/" : "divide"};
   
 
@@ -24,9 +24,9 @@ $(document).ready(function(){
               ];
     var idd = [ ['ac','c','play','x'],
                 ['1','2','3','divide'], 
-                ['4','5','6','multiple'],
-                ['7','8','9','minus'],
-                ['0','dot','equals','plus']
+                ['4','5','6','multiply'],
+                ['7','8','9','subtract'],
+                ['0','dot','equals','add']
               ];          
     
     
@@ -160,15 +160,36 @@ $(document).ready(function(){
   }
 
   function pressingNumberFunc(e){
-    console.log('kuku');
+    console.log('kuku which', e.which);
     var numbersArr = [0,1,2,3,4,5,6,7,8,9];
     for (var i=0; i<numbersArr.length; i++){
       var strD = 'Digit';
       var strN = 'Numpad';
 	    if(e.originalEvent.code == strD + numbersArr[i] || e.originalEvent.code == strN + numbersArr[i] ){ 
-        console.log(e.originalEvent.code);
+        console.log(e.originalEvent.code , "code");
 	      makeCallback(numbersArr[i])();
-	    }
+        break;
+	    }  
+    }
+    for (var key in actionObj){
+      console.log(typeof(e.originalEvent.code), e.originalEvent.code, "act Obj");
+      var str = 'Numpad' + actionObj[key].charAt(0).toUpperCase() + actionObj[key].slice(1);
+      if (e.originalEvent.code == str){
+        console.log("action console inside");
+				makeActionCallback(key)();
+        break;
+			}
+    }
+    switch(e.which) {
+    case 8:
+        delLastNumber();
+        break;
+    case 13:
+        equalCallback();
+        break;
+    case 46:
+        dot();
+				break;
     }
   }
  
