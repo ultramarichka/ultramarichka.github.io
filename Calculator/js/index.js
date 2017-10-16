@@ -160,36 +160,41 @@ $(document).ready(function(){
   }
 
   function pressingNumberFunc(e){
-    console.log('kuku which', e.which);
     var numbersArr = [0,1,2,3,4,5,6,7,8,9];
     for (var i=0; i<numbersArr.length; i++){
       var strD = 'Digit';
       var strN = 'Numpad';
 	    if(e.originalEvent.code == strD + numbersArr[i] || e.originalEvent.code == strN + numbersArr[i] ){ 
-        console.log(e.originalEvent.code , "code");
 	      makeCallback(numbersArr[i])();
         break;
 	    }  
     }
     for (var key in actionObj){
-      console.log(typeof(e.originalEvent.code), e.originalEvent.code, "act Obj");
       var str = 'Numpad' + actionObj[key].charAt(0).toUpperCase() + actionObj[key].slice(1);
       if (e.originalEvent.code == str){
-        console.log("action console inside");
 				makeActionCallback(key)();
         break;
-			}
+			} 
     }
-    switch(e.which) {
-    case 8:
+    switch(e.originalEvent.code) {
+    case "Backspace":
         delLastNumber();
         break;
-    case 13:
+    case "NumpadEnter"||"Enter"||"Equal":
         equalCallback();
         break;
-    case 46:
+    case "NumpadDecimal":
         dot();
 				break;
+    case "Delete":
+        cleanInput();
+        break;
+    case "Backslash":
+			makeActionCallback("/")();
+      break;
+		case "Minus":
+			makeActionCallback("-")();
+      break;
     }
   }
  
