@@ -19,9 +19,15 @@ h1 {
 .buttons:hover {
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.5), 0 17px 50px 0 rgba(0,0,0,0.1);  
 }
-.btn-codepen:hover {
+.btn-codepen:hover, .btn-codepen:focus {
   color: #A9A9A9;
+  outline: none !important;
+  
 }
+/*.buttons:active {
+  outline: none !important;
+}*/
+ 
 #github{
   border: 2px solid #A9A9A9;
 }
