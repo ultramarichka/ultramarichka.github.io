@@ -143,9 +143,12 @@ $(document).ready(function(){
   
  
   var audioElement = document.createElement('audio');
-    audioElement.setAttribute('src',
-'https://ultramarichka.github.io/Calculator/calc.mp3');
-
+    
+    audioElement.setAttribute('src', 'calc.ogg');
+    // <audio controls>
+    //   <source src="https://ultramarichka.github.io/Calculator/calc.ogg" type="audio/ogg">
+    //   <source src="https://ultramarichka.github.io/Calculator/calc.mp3" type="audio/mpeg">
+    // </audio>
    
   var flagPlay = true;
   function music() {

@@ -21,24 +21,25 @@ function successCallback(response) {
 
     //create obj key = yourIcon; value = BackgroundSrc
     console.log(yourIcon);
-    var myObj = {"01d" : "http://i63.tinypic.com/bvqzb.jpg",
-                 "01n" : "http://i64.tinypic.com/2a7uf5z.jpg",
-                 "02d" : "http://i65.tinypic.com/15x8igh.jpg",
-                 "02n" : "http://i68.tinypic.com/34nfa1k.jpg",
-                 "03d" : "http://i66.tinypic.com/5upu13.jpg",
-                 "03n" : "http://i66.tinypic.com/2njipty.jpg",
-                 "04d" : "http://i68.tinypic.com/332m6j7.jpg",
-                 "04n" : "http://i63.tinypic.com/oaya6r.jpg",
-                 "09d" : "http://i66.tinypic.com/23jrj9x.jpg",
-                 "09n" : "http://i64.tinypic.com/2hrj3a0.jpg",
-                 "10d" : "http://i66.tinypic.com/2u6l9x1.jpg",
-                 "10n" : "http://i68.tinypic.com/211km6f.jpg",
-                 "11d" : "http://i66.tinypic.com/2910poi.jpg",
-                 "11n" : "http://i66.tinypic.com/hrd9x4.jpg",
-                 "13d" : "http://i68.tinypic.com/2jdjhmx.jpg",
-                 "13n" : "http://i66.tinypic.com/wia3nn.jpg",
-                 "50d" : "http://i68.tinypic.com/x6mv02.jpg",
-                 "50n" : "http://i64.tinypic.com/2uhmvki.jpg"};
+    var myObj = {"01d" : "pict/01d.jpeg",
+                 "01n" : "pict/01n.jpeg",
+                 "02d" : "pict/02d.jpeg",
+                 "02n" : "pict/02n.jpeg",
+                 "03d" : "pict/03d.jpeg",
+                 "03n" : "pict/03n.jpeg",
+                 "04d" : "pict/04d.jpeg",
+                 "04n" : "pict/04n.jpeg",
+                 "09d" : "pict/09d.jpeg",
+                 "09n" : "pict/09n.jpeg",
+                 "10d" : "pict/10d.jpeg",
+                 "10n" : "pict/10n.jpeg",
+                 "11d" : "pict/11d.jpeg",
+                 "11n" : "pict/11n.jpeg",
+                 "13d" : "pict/13d.jpeg",
+                 "13n" : "pict/13n.jpeg",
+                 "50d" : "pict/50d.jpeg",
+                 "50n" : "pict/50n.jpeg",
+		};
    for (var key in myObj){
      var yourBackgroundImageSrc = "url("+ myObj[yourIcon] +")";
     $("#background").css("background-image", yourBackgroundImageSrc); 
