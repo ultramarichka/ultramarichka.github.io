@@ -1,10 +1,28 @@
+#first_page {
+  margin-top: -5%;
+  text-align: center;
+}
+#buttons_block {
+  text-align: center;
+  padding-top: 5%;
+}
+
+hr {
+  margin-top: 5%;
+  border-color: #707070;
+  
+  
+}
 h1 {
-  font-size: 60px;
-  font-family: Lobster, Arial;
-  color: #fff;
+  font-size: 80px;
+  font-family: 'Dancing Script', cursive, Arial;
+  color: white;
+  text-shadow: 0 0 15px black, 0 0 45px black, 0 0 3px black;/* #474747 5px 5px 5px; /*0 0 15px #cfc1cb, 0 0 20px  #cfc1cb, 0 0 30px  #0095b6, 0 0 40px  #f57722,  0 0 55px #8484c1;  /*0 0 75px #cfc1cb;
+  /*color: #fff;
   
   text-shadow: #474747 5px 5px 5px, 0 0 10px #00004c, 0 0 15px #cfc1cb, 0 0 20px  #cfc1cb, 0 0 30px  #0095b6, 0 0 40px  #f57722,  0 0 55px #8484c1,  0 0 75px #cfc1cb;
-}
+*/}
+
 .buttons {
     margin: 10px;   
 }
@@ -39,9 +57,9 @@ h1 {
   background-size: cover;
   min-height: 100vh;
 }
+
 #Home{ 
   background-image: url(backgrounds/b1_bright_127.jpg);
-  background-opacity: 0.6;
   padding: 20% 0 25% 0;
   }
 #About {
