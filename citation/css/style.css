@@ -7,15 +7,17 @@
   min-height: 100vh;
 }
 #quotes {
-    margin-top: 10%;
+
+    margin-top: 20%;
     margin-bottom: 5%;
     position: center;
     padding: 25px;
 
     border: 3px solid #73AD21;
     border-radius: 25px;
-   
+ 
 }
+
 #Vkontakte {
   background-color: #45668e;
   color: #FFF;
