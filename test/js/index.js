@@ -103,6 +103,9 @@ function Slider(container, R, max_value, min_value, step, color){
   function handleTouchStart(e){
     e.preventDefault();
     click(e);
+    e.target.touchmove = drag;
+    drag(e);
+    e.target.removeEventListener("touchend", drag, false); 
   }
 
   // -----------ATTACH CALLBACKS------------
@@ -113,7 +116,10 @@ function Slider(container, R, max_value, min_value, step, color){
   window.onmouseup = disableDrag; 
 
   this.div_oCircle.touchstart = handleTouchStart; 
-  /*wait until you get a touchstart event and then add touchmove/touchend/touchcancel handlers
+  /*touch events always target the element where that touch STARTED, while mouse events target 
+   the element currently under the mouse cursor.
+
+   -> wait until you get a touchstart event and then add touchmove/touchend/touchcancel handlers
    to the target of the touchstart event (and remove them on end/cancel)
    https://www.html5rocks.com/en/mobile/touchandmouse/
   */
