@@ -91,7 +91,7 @@ function Slider(container, R, max_value, min_value, step, color){
 
   function enableDrag(e){
     self.beingDragged = true;
-    window.onmousemove = drag;
+    window.onmousemove = drag;  //????
     drag(e);
   } 
 
@@ -100,15 +100,50 @@ function Slider(container, R, max_value, min_value, step, color){
     window.onmousemove = undefined;
   }
   //------TOUCH CALLBACKS-------
-  function handleTouchStart(e){
-    //disable appearance of mouse events
+  function touchStart(e){
     e.preventDefault();
-    click(e);
+    //if (!e){e = window.event;} 
+    //mask the inner circle https://stackoverflow.com/a/1369080/8325614
+    if( e.target !== self.div_oCircle && e.target !== self.div_handle) return;
+    if else (e.target == self.div_oCircle){
+      // find 'mouse' coordinates
+      var x = e.pageX;
+      var y = e.pageY;
+      //move handle to the coordinates
+      fi = Math.atan2(x - x0 - self.r , (y - y0 - self.r));
+      self.update(-fi+Math.PI/2);
+      //-----if touchend happen -> that's it
+    }
+    
+    if (e.target == self.div_handle){
+    //else enableTouchDrag OR addEventListener ("touchmove", ...)
+      this.div_handle.touchmove = enableTouchDrag; 
+      this.div_handle.touchend = disableTouchDrag; 
+    }
+  }
+
+  function enableTouchDrag(e){
+    e.preventDefault();
+    self.beingDragged = true;
     alert(event.target);
     e.target.touchmove = drag;
     drag(e);
-    e.target.removeEventListener("touchend", drag, false); 
   }
+  function disableTouchDrag(e){
+    e.preventDefault();
+    self.beingDragged = false;
+    alert(event.target);
+    e.target.touchmove = undefined;
+  }
+ /*
+  function handleTouchStart(e){
+    //disable appearance of mouse events
+    e.preventDefault();
+    touchStart(e);
+    alert(event.target);
+    enableTouchDrag(e);
+    e.target.removeEventListener("touchend", drag, false); 
+  }*/
 
   // -----------ATTACH CALLBACKS------------
   
@@ -117,7 +152,7 @@ function Slider(container, R, max_value, min_value, step, color){
 
   window.onmouseup = disableDrag; 
 
-  this.div_oCircle.touchstart = handleTouchStart; 
+  this.div_oCircle.touchstart = touchStart; 
   
   /*touch events always target the element where that touch STARTED, while mouse events target 
    the element currently under the mouse cursor.
