@@ -101,8 +101,10 @@ function Slider(container, R, max_value, min_value, step, color){
   }
   //------TOUCH CALLBACKS-------
   function handleTouchStart(e){
+    //disable appearance of mouse events
     e.preventDefault();
     click(e);
+    alert(event.target);
     e.target.touchmove = drag;
     drag(e);
     e.target.removeEventListener("touchend", drag, false); 
@@ -116,6 +118,7 @@ function Slider(container, R, max_value, min_value, step, color){
   window.onmouseup = disableDrag; 
 
   this.div_oCircle.touchstart = handleTouchStart; 
+  
   /*touch events always target the element where that touch STARTED, while mouse events target 
    the element currently under the mouse cursor.
 
