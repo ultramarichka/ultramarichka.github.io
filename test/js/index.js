@@ -37,10 +37,21 @@ function Slider(container, R, min_value, max_value, step, color){
   this.div_oCircleHover.style.width=R+"px";
   this.div_oCircleHover.style.height=2*R+"px";
   this.div_oCircleHover.style.borderRadius = R+"px 0 0 "+R+"px";
-  this.div_oCircleHover.style.background = "linear-gradient(0deg, rgb(0,255,0,1), rgb(0,255,0,0) 100px)";
+  this.div_oCircleHover.style.background = "linear-gradient(0deg, rgb(0,255,0,0.5), rgb(0,255,0,0) 100px)";
   this.div_oCircleHover.style.zIndex = "1";
   this.div_oCircle.appendChild(this.div_oCircleHover);
   
+  //left half-circle hover
+  this.div_oCircleHoverLeft = document.createElement("div");
+  this.div_oCircleHoverLeft.style.width=R+"px";
+  this.div_oCircleHoverLeft.style.height=2*R+"px";
+  this.div_oCircleHoverLeft.style.right=-R+"px";
+  this.div_oCircleHoverLeft.style.top=-2*R+"px";
+  this.div_oCircleHoverLeft.style.borderRadius = "0 "+R+"px "+R+"px 0";
+  this.div_oCircleHoverLeft.style.background = "linear-gradient(180deg, rgb(0,255,0,1), rgb(0,255,0,0.5) )";
+  this.div_oCircleHoverLeft.style.position = "relative";
+  this.div_oCircleHoverLeft.style.zIndex = "2";
+  this.div_oCircle.appendChild(this.div_oCircleHoverLeft);
 
   this.div_iCircle = document.createElement("div");
   this.div_iCircle.id = "inner_circle";
@@ -52,7 +63,7 @@ function Slider(container, R, min_value, max_value, step, color){
   this.div_iCircle.style.position = "relative";
   this.div_iCircle.style.left = (R-r)+"px";
   this.div_iCircle.style.top= (R-r)+"px";
-  this.div_iCircle.style.zIndex = "2"; 
+  this.div_iCircle.style.zIndex = "3"; 
   this.div_oCircleHover.appendChild(this.div_iCircle);
   // distance to top left corner of div_iCircle from widow origin of coordinates
   // nice approach from here https://stackoverflow.com/a/33347664/8325614
@@ -68,7 +79,7 @@ function Slider(container, R, min_value, max_value, step, color){
   this.div_handle.style.background = "red";
   this.div_handle.style.border = "1px solid #a8a8a8";
   this.div_handle.style.position = "relative";
-  this.div_handle.style.zIndex = "3"; 
+  this.div_handle.style.zIndex = "4"; 
   this.div_iCircle.appendChild(this.div_handle);
 
   
@@ -91,7 +102,7 @@ function Slider(container, R, min_value, max_value, step, color){
     //move handle to the coordinates
     fi = Math.atan2(x - x0 - self.r , (y - y0 - self.r));
     self.update(-(fi + Math.PI));
-    self.div_oCircleHover.style.background = "linear-gradient(0deg, rgb(0,255,0,1), rgb(0,255,0,0) "+ ((y0 + 2*self.r +(R-r)/2) -y) +"px)";
+    self.div_oCircleHover.style.background = "linear-gradient(0deg, rgb(0,255,0,0.5), rgb(0,255,0,0) "+ ((y0 + 2*self.r +(R-r)/2) -y) +"px)";
   }
 
   function drag(e){
@@ -104,8 +115,14 @@ function Slider(container, R, min_value, max_value, step, color){
     //move handle to the coordinates
     fi = Math.atan2(x - x0 - self.r , (y - y0 - self.r));
     self.update(-(fi + Math.PI));  //why -Math.PI????
-    if((-(fi + Math.PI) > Math.PI) && (-(fi + Math.PI) < 2*Math.PI)){
-      self.div_oCircleHover.style.background = "linear-gradient(0deg, rgb(0,255,0,1), rgb(0,255,0,0) "+ ((y0 + 2*self.r +(R-r)/2) -y) +"px)";
+   
+    if((fi + Math.PI) < Math.PI){
+      self.div_oCircleHoverLeft.style.background = "linear-gradient(180deg, rgb(0,255,0,1), rgb(0,255,0,0.5) )";
+      self.div_oCircleHover.style.background = "linear-gradient(0deg, rgb(0,255,0,0.5), rgb(0,255,0,0) "+ ((y0 + 2*self.r +(R-r)/2) -y) +"px)";
+    }
+    if (((fi + Math.PI) > Math.PI) && ((fi + Math.PI) < 2*Math.PI)) {
+      self.div_oCircleHover.style.background = "";
+      self.div_oCircleHoverLeft.style.background = "linear-gradient(180deg, rgb(0,255,0,1), rgb(0,255,0,0) "+ y  +"px)";
     }
     
   
