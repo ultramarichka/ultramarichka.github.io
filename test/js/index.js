@@ -1,5 +1,6 @@
 document.body.onload = demo();
 
+//??how to make opacity in linear-gradient if I set color here
 function demo(){
   new Slider(document.body, 100, 0, 750, 1, '#fbe5f7');
 }
@@ -32,6 +33,7 @@ function Slider(container, R, min_value, max_value, step, color){
   this.div_oCircle.style.opacity = "0.6";
   this.div_slider.appendChild(this.div_oCircle);
 
+  //used cheating variant of "conic-gradient" via linear-gradient https://stackoverflow.com/a/22859559/8325614
   //right half-circle hover
   this.div_oCircleHover = document.createElement("div");
   this.div_oCircleHover.style.width=R+"px";
@@ -53,13 +55,13 @@ function Slider(container, R, min_value, max_value, step, color){
   this.div_oCircleHoverLeft.style.zIndex = "2";
   this.div_oCircle.appendChild(this.div_oCircleHoverLeft);
 
+  //mask
   this.div_iCircle = document.createElement("div");
   this.div_iCircle.id = "inner_circle";
   this.div_iCircle.style.width= 2*r+"px";
   this.div_iCircle.style.height= 2*r+"px";
   this.div_iCircle.style.borderRadius = r+"px";
   this.div_iCircle.style.background = "white";
-  //this.div_iCircle.style.opacity = "0.6";
   this.div_iCircle.style.position = "relative";
   this.div_iCircle.style.left = (R-r)+"px";
   this.div_iCircle.style.top= (R-r)+"px";
@@ -85,7 +87,6 @@ function Slider(container, R, min_value, max_value, step, color){
   
   
   self.update = function(fi){
-    //self.fi = fi;
     self.div_handle.style.left= r + (r+(R-r)/2)*Math.cos(fi + fi0) - dh/2 +"px";  //x = r*cos(fi); x-coordinate of the #handle
     self.div_handle.style.top= r + (r+(R-r)/2)*Math.sin(fi +fi0) - dh/2 +"px";   //y - coordinate of the #handle
   }
@@ -95,15 +96,22 @@ function Slider(container, R, min_value, max_value, step, color){
   function click(e){
     if (!e){e = window.event;} 
     //mask the inner circle https://stackoverflow.com/a/1369080/8325614
-    if (( e.target !== self.div_oCircle) && (e.target !== self.div_oCircleHover)) {return;}
+    if (( e.target !== self.div_oCircle) && (e.target !== self.div_oCircleHover) && (e.target !== self.div_oCircleHoverLeft)) {return;}
     // find mouse coordinates
     var x = e.pageX;
     var y = e.pageY;
     //move handle to the coordinates
     fi = Math.atan2(x - x0 - self.r , (y - y0 - self.r));
     self.update(-(fi + Math.PI));
-    self.div_oCircleHover.style.background = "linear-gradient(0deg, rgb(0,255,0,0.5), rgb(0,255,0,0) "+ ((y0 + 2*self.r +(R-r)/2) -y) +"px)";
-  }
+    if((fi + Math.PI) < Math.PI){
+      self.div_oCircleHoverLeft.style.background = "linear-gradient(180deg, rgb(0,255,0,1), rgb(0,255,0,0.5) )";
+      self.div_oCircleHover.style.background = "linear-gradient(0deg, rgb(0,255,0,0.5), rgb(0,255,0,0) "+ ((y0 + 2*self.r +(R-r)/2) -y) +"px)";
+    }
+    if (((fi + Math.PI) > Math.PI) && ((fi + Math.PI) < 2*Math.PI)) {
+      self.div_oCircleHover.style.background = "";
+      self.div_oCircleHoverLeft.style.background = "linear-gradient(180deg, rgb(0,255,0,1), rgb(0,255,0,0) "+ y  +"px)";
+    }
+ }
 
   function drag(e){
     if (!e){e = window.event;} 
@@ -114,7 +122,7 @@ function Slider(container, R, min_value, max_value, step, color){
    
     //move handle to the coordinates
     fi = Math.atan2(x - x0 - self.r , (y - y0 - self.r));
-    self.update(-(fi + Math.PI));  //why -Math.PI????
+    self.update(-(fi + Math.PI));  
    
     if((fi + Math.PI) < Math.PI){
       self.div_oCircleHoverLeft.style.background = "linear-gradient(180deg, rgb(0,255,0,1), rgb(0,255,0,0.5) )";
@@ -130,7 +138,7 @@ function Slider(container, R, min_value, max_value, step, color){
 
   function enableDrag(e){
     self.beingDragged = true;
-    window.onmousemove = drag;  //????
+    window.onmousemove = drag;  
     drag(e);
   } 
 
@@ -138,13 +146,13 @@ function Slider(container, R, min_value, max_value, step, color){
     self.beingDragged = false;
     window.onmousemove = undefined;
   }
-  /*
+  
   //------TOUCH CALLBACKS-------
   function touchStart(e){
     e.preventDefault();
-    //if (!e){e = window.event;} 
+    if (!e){e = window.event;} 
     //mask the inner circle https://stackoverflow.com/a/1369080/8325614
-    if( e.target !== self.div_oCircle && e.target !== self.div_handle) return;
+    if( e.target !== self.div_oCircle && e.target == self.div_oCircle && e.target !== self.div_oCircleHover && e.target !== self.div_oCircleHoverLeft) return;
     if(e.target == self.div_oCircle){
       // find 'mouse' coordinates
       var x = e.pageX;
@@ -152,6 +160,14 @@ function Slider(container, R, min_value, max_value, step, color){
       //move handle to the coordinates
       fi = Math.atan2(x - x0 - self.r , (y - y0 - self.r));
       self.update(-fi+Math.PI/2);
+      if((fi + Math.PI) < Math.PI){
+      self.div_oCircleHoverLeft.style.background = "linear-gradient(180deg, rgb(0,255,0,1), rgb(0,255,0,0.5) )";
+      self.div_oCircleHover.style.background = "linear-gradient(0deg, rgb(0,255,0,0.5), rgb(0,255,0,0) "+ ((y0 + 2*self.r +(R-r)/2) -y) +"px)";
+      }
+      if (((fi + Math.PI) > Math.PI) && ((fi + Math.PI) < 2*Math.PI)) {
+        self.div_oCircleHover.style.background = "";
+        self.div_oCircleHoverLeft.style.background = "linear-gradient(180deg, rgb(0,255,0,1), rgb(0,255,0,0) "+ y  +"px)";
+      }
       //-----if touchend happen -> that's it
     }
     
@@ -165,7 +181,7 @@ function Slider(container, R, min_value, max_value, step, color){
   function enableTouchDrag(e){
     e.preventDefault();
     self.beingDragged = true;
-    console.log(event.target);
+    
     e.target.touchmove = drag;
     drag(e);
   }
@@ -175,17 +191,18 @@ function Slider(container, R, min_value, max_value, step, color){
     alert(event.target);
     e.target.touchmove = undefined;
   }
- */
+ 
 
   // -----------ATTACH CALLBACKS------------
   
   this.div_oCircle.onclick = click;
   this.div_oCircleHover.onclick = click;
+  this.div_oCircleHoverLeft.onclick = click;
   this.div_handle.onmousedown = enableDrag;
 
   window.onmouseup = disableDrag; 
 
-  //this.div_oCircle.touchstart = touchStart; 
+  this.div_oCircle.touchstart = touchStart; 
   
   /*touch events always target the element where that touch STARTED, while mouse events target 
    the element currently under the mouse cursor.
