@@ -237,7 +237,7 @@ function Slider(options){
     // find mouse coordinates
     var x = e.pageX;
     var y = e.pageY;
-    moveHandle(x, y) 
+    moveHandle(x, y); 
   } 
 
   function enableDrag(e){
@@ -256,7 +256,7 @@ function Slider(options){
     e.preventDefault();
     if (!e){e = window.event;} 
     //mask the inner circle https://stackoverflow.com/a/1369080/8325614
-    if( e.target !== self.div_oCircle && e.target == self.div_oCircle && e.target !== self.div_oCircleHover && e.target !== self.div_oCircleHoverRight) return;
+    if( e.target !== self.div_oCircle && e.target !== self.div_handle && e.target !== self.div_oCircleHover && e.target !== self.div_oCircleHoverRight) return;
     
     var touches = e.changedTouches;      
     // find finger's coordinates
