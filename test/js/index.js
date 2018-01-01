@@ -274,7 +274,7 @@ function Slider(options){
     // find finger coordinates
     x0 = e.changedTouches[0].pageX;
     y0 = e.changedTouches[0].pageY;
-    maveHandle(x0, y0);
+    moveHandle(x0, y0);
     self.div_handle.addEventListener("touchmove", touchMoveDrag, false);
   } 
  
