@@ -242,8 +242,8 @@ function Slider(options){
 
   function enableDrag(e){
     self.beingDragged = true;
-    window.onmousemove = drag;  
-    drag(e);
+    window.onmousemove = drag; 
+    //drag(e);
   } 
 
   function disableDrag (){
@@ -254,10 +254,11 @@ function Slider(options){
   //------TOUCH CALLBACKS-------
   function touchClickStart(e){
     e.preventDefault();
+    //??
     if (!e){e = window.event;} 
     //mask the inner circle https://stackoverflow.com/a/1369080/8325614
     if( e.target !== self.div_oCircle && e.target !== self.div_oCircleHover && e.target !== self.div_oCircleHoverRight) return;
-    
+    console.log("touchclick");
     var touches = e.changedTouches;      
     // find finger's coordinates
     var x = e.changedTouches[0].pageX;
@@ -265,44 +266,50 @@ function Slider(options){
     moveHandle(x, y);
   }
   
-  function touchDrag(e){
-    if (!e){ e = window.event;} 
-    if(!self.beingDragged){return;}
+  var x0;
+  var y0;
+
+  function touchStartDrag(e){
+    //if (!e){ e = window.event;} 
     // find finger coordinates
+    x0 = e.changedTouches[0].pageX;
+    y0 = e.changedTouches[0].pageY;
+    maveHandle(x0, y0);
+    self.div_handle.addEventListener("touchmove", touchMoveDrag, false);
+  } 
+ 
+  function touchMoveDrag(e){
     var x = e.changedTouches[0].pageX;
     var y = e.changedTouches[0].pageY;
     moveHandle(x, y);
-  } 
- 
-  function enableTouchDrag(e){
-    e.preventDefault();
-    self.beingDragged = true;
-    self.div_handle.addEventListener("touchmove", touchDrag, false);
-    touchDrag(e);
+    self.div_handle.addEventListener("touchend", touchEnd, false);
+    self.div_handle.addEventListener("touchcancel", touchCancel, false);
   }
-  function disableTouchDrag(e){
-    e.preventDefault();
-    self.beingDragged = false;
-    self.div_handle.removeEventListener("touchmove", enableTouchDrag, false);
-   
+
+  function touchEnd(e){
+    self.div_handle.removeEventListener("touchmove", touchMoveDrag, false);
   }
- 
+
+  function touchCancel(e){
+    moveHandle(x0, y0);
+  }
 
   // -----------ATTACH CALLBACKS------------
-  
+ /* 
   this.div_oCircle.onclick = click;
   this.div_oCircleHover.onclick = click;
   this.div_oCircleHoverRight.onclick = click;
   this.div_handle.onmousedown = enableDrag;
 
   window.onmouseup = disableDrag; 
+  */
+  // -----------ATTACH TOUCH CALLBACKS------------
 
   this.div_oCircle.addEventListener("touchstart", touchClickStart, false);
   this.div_oCircleHover.addEventListener("touchstart", touchClickStart, false);
   this.div_oCircleHoverRight.addEventListener("touchstart", touchClickStart, false);
   
-  this.div_handle.addEventListener("touchstart", enableTouchDrag, false);
-  this.div_handle.removeEventListener("touchend", enableTouchDrag, false);
+  this.div_handle.addEventListener("touchstart", touchStartDrag, false);
 
   /*touch events always target the element where that touch STARTED, while mouse events target 
    the element currently under the mouse cursor.
