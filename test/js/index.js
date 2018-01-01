@@ -252,11 +252,11 @@ function Slider(options){
   }
   
   //------TOUCH CALLBACKS-------
-  function touchStart(e){
+  function touchClickStart(e){
     e.preventDefault();
     if (!e){e = window.event;} 
     //mask the inner circle https://stackoverflow.com/a/1369080/8325614
-    if( e.target !== self.div_oCircle && e.target !== self.div_handle && e.target !== self.div_oCircleHover && e.target !== self.div_oCircleHoverRight) return;
+    if( e.target !== self.div_oCircle && e.target !== self.div_oCircleHover && e.target !== self.div_oCircleHoverRight) return;
     
     var touches = e.changedTouches;      
     // find finger's coordinates
@@ -277,12 +277,14 @@ function Slider(options){
   function enableTouchDrag(e){
     e.preventDefault();
     self.beingDragged = true;
+    self.div_handle.addEventListener("touchmove", touchDrag, false);
     touchDrag(e);
   }
   function disableTouchDrag(e){
     e.preventDefault();
     self.beingDragged = false;
     self.div_handle.removeEventListener("touchmove", enableTouchDrag, false);
+   
   }
  
 
@@ -295,8 +297,12 @@ function Slider(options){
 
   window.onmouseup = disableDrag; 
 
-  this.div_oCircle.addEventListener("touchstart", touchStart, false);
-  this.div_handle.addEventListener("touchstart", touchStart, false);
+  this.div_oCircle.addEventListener("touchstart", touchClickStart, false);
+  this.div_oCircleHover.addEventListener("touchstart", touchClickStart, false);
+  this.div_oCircleHoverRight.addEventListener("touchstart", touchClickStart, false);
+  
+  this.div_handle.addEventListener("touchstart", enableTouchDrag, false);
+  this.div_handle.removeEventListener("touchend", enableTouchDrag, false);
 
   /*touch events always target the element where that touch STARTED, while mouse events target 
    the element currently under the mouse cursor.
