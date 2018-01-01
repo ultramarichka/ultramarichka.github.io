@@ -15,7 +15,7 @@ function demo(){
                    R: 100,
                    max_value: 800,
                    min_value: 0,
-                   step: 50,
+                   step: 1,
                    color: "green",
                    //valueContainer: valueContainer
   };
