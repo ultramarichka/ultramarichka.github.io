@@ -253,7 +253,6 @@ function Slider(options){
   
   //------TOUCH CALLBACKS-------
   function touchClickStart(e){
-    e.preventDefault();
     //??
     if (!e){e = window.event;} 
     //mask the inner circle https://stackoverflow.com/a/1369080/8325614
@@ -270,31 +269,27 @@ function Slider(options){
   var y0;
 
   function touchStartDrag(e){
-    e.preventDefault();
     //if (!e){ e = window.event;} 
     // find finger coordinates
     x0 = e.changedTouches[0].pageX;
     y0 = e.changedTouches[0].pageY;
     moveHandle(x0, y0);
-    self.div_handle.addEventListener("touchmove", touchMoveDrag, false);
+    self.div_handle.addEventListener("touchmove", touchMoveDrag, {passive: true});
   } 
  
   function touchMoveDrag(e){
-    e.preventDefault();
     var x = e.changedTouches[0].pageX;
     var y = e.changedTouches[0].pageY;
     moveHandle(x, y);
-    self.div_handle.addEventListener("touchend", touchEnd, false);
-    self.div_handle.addEventListener("touchcancel", touchCancel, false);
+    self.div_handle.addEventListener("touchend", touchEnd, {passive: true});
+    self.div_handle.addEventListener("touchcancel", touchCancel, {passive: true});
   }
 
   function touchEnd(e){
-    e.preventDefault();
-    self.div_handle.removeEventListener("touchmove", touchMoveDrag, false);
+    self.div_handle.removeEventListener("touchmove", touchMoveDrag, {passive: true});
   }
 
   function touchCancel(e){
-    e.preventDefault();
     moveHandle(x0, y0);
   }
 
@@ -309,11 +304,11 @@ function Slider(options){
   */
   // -----------ATTACH TOUCH CALLBACKS------------
 
-  this.div_oCircle.addEventListener("touchstart", touchClickStart, false);
-  this.div_oCircleHover.addEventListener("touchstart", touchClickStart, false);
-  this.div_oCircleHoverRight.addEventListener("touchstart", touchClickStart, false);
+  this.div_oCircle.addEventListener("touchstart", touchClickStart, {passive: true});
+  this.div_oCircleHover.addEventListener("touchstart", touchClickStart, {passive: true});
+  this.div_oCircleHoverRight.addEventListener("touchstart", touchClickStart, {passive: true});
   
-  this.div_handle.addEventListener("touchstart", touchStartDrag, false);
+  this.div_handle.addEventListener("touchstart", touchStartDrag, {passive: true});
 
   /*touch events always target the element where that touch STARTED, while mouse events target 
    the element currently under the mouse cursor.
