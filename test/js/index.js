@@ -270,6 +270,7 @@ function Slider(options){
   var y0;
 
   function touchStartDrag(e){
+    e.preventDefault();
     //if (!e){ e = window.event;} 
     // find finger coordinates
     x0 = e.changedTouches[0].pageX;
@@ -279,6 +280,7 @@ function Slider(options){
   } 
  
   function touchMoveDrag(e){
+    e.preventDefault();
     var x = e.changedTouches[0].pageX;
     var y = e.changedTouches[0].pageY;
     moveHandle(x, y);
@@ -287,10 +289,12 @@ function Slider(options){
   }
 
   function touchEnd(e){
+    e.preventDefault();
     self.div_handle.removeEventListener("touchmove", touchMoveDrag, false);
   }
 
   function touchCancel(e){
+    e.preventDefault();
     moveHandle(x0, y0);
   }
 
