@@ -1,7 +1,5 @@
 document.body.onload = demo();
 
-//??how to make opacity in linear-gradient if I set color here
-//not-rgb notation is not supported in safari https://css-tricks.com/thing-know-gradients-transparent-black/
 function demo(){
 
   var parentContainer = document.createElement("div");
@@ -110,6 +108,7 @@ function Slider(options){
   this.dh = 24; //#handle size
   this.container = options.container;
   self.beingDragged = false;
+  self.maxFlag = false;
  
   self.max_value = options.max_value ;
   self.min_value = options.min_value ;
@@ -198,6 +197,7 @@ function Slider(options){
                       + '-khtml-user-select: none; '
                       + '-webkit-user-select: none; '
                       + 'user-select: none; ';
+                   //   + 'line-height: unset;';
   self.div_iCircle.setAttribute('style', self.iCircleStyles); 
   this.div_oCircle.appendChild(this.div_iCircle);
   // distance to top left corner of div_iCircle from widow origin of coordinates
@@ -276,16 +276,27 @@ function Slider(options){
     
     self.valueTextNode.nodeValue = "$"+ self.value ;
     self.update(fi);
+  }
 
-    /*
-    if( -Math.PI/2 <fi < Math.PI/2){
-      self.div_oCircleHoverRight.style.background = "-moz-linear-gradient(180deg, rgb(0,255,0,1), rgb(0,255,0,0.5) )";
-      self.div_oCircleHover.style.background = "-moz-linear-gradient(0deg, rgb(0,255,0,0.5), rgb(0,255,0,0) "+ y -(y0 + 2*self.r +(R-r)/2) +"px)";
+  function stopHandleAtMax(x, y){
+    //stop handle at value = max
+    var x0 = self.div_iCircle.getBoundingClientRect().left;
+    var y0 = self.div_iCircle.getBoundingClientRect().top;
+    fi = Math.atan2(-(y - y0 - self.r), x - x0 - self.r );
+    
+    var xmax = self.div_iCircle.getBoundingClientRect().left + self.r;
+    var ymax = Math.round(self.div_iCircle.getBoundingClientRect().top - dh/2);
+
+    if(fi == Math.PI/2 ){
+      console.log("kuku");
+      self.maxFlag = true;
     }
-    if (-Math.PI < fi < -Math.PI/2 ||  Math.PI > fi > Math.PI/2) {
-      self.div_oCircleHover.style.background = "";
-      self.div_oCircleHoverRight.style.background = "-moz-linear-gradient(180deg, rgb(0,255,0,1), rgb(0,255,0,0.4) "+ y  +"px, transparent " + y0 +R-r+"px)";
-    }*/
+    if (self.maxFlag && fi < Math.PI/2 && fi > 0){
+      moveHandle(xmax, ymax);
+      self.value = self.max_value;
+      self.valueTextNode.nodeValue = "$"+ self.value ;
+      console.log(self.value , self.max_value);
+    }    
   }
 
   // -----------CALLBACKS--------------------
@@ -300,37 +311,28 @@ function Slider(options){
   }
 
   function drag(e){
-    if (!e){
-      console.log(e);
-      e = window.event;} 
+    if (!e){e = window.event;} 
     if(!self.beingDragged){return;}
     // find mouse coordinates
     var x = e.clientX;
     var y = e.clientY;
     moveHandle(x, y); 
+    stopHandleAtMax(x, y);
   } 
 
   function enableDrag(e){
-    /**
-     * to avoid 'dragability'(works even without it), what else?
-     * http://www.javascripter.net/faq/canceleventbubbling.htm
-     * e.preventDefault ?  e.preventDefault() : e.returnValue = false;
-     * if (e.stopPropagation)    e.stopPropagation();
-     * if (!e.cancelBubble) e.cancelBubble = true;
-     */ 
     self.beingDragged = true;
     window.onmousemove = drag; 
-    //drag(e);
   } 
 
   function disableDrag (){
     self.beingDragged = false;
+    self.maxFlag = false;
     window.onmousemove = undefined;
   }
   
   //------TOUCH CALLBACKS-------
   function touchClickStart(e){
-    //??
     if (!e){e = window.event;} 
     //mask the inner circle https://stackoverflow.com/a/1369080/8325614
     if( e.target !== self.div_oCircle ) return;
