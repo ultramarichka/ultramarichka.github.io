@@ -1,44 +1,122 @@
 document.body.onload = demo();
 
-
-  
 //??how to make opacity in linear-gradient if I set color here
 //not-rgb notation is not supported in safari https://css-tricks.com/thing-know-gradients-transparent-black/
 function demo(){
-  var valueContainer = document.createElement("div");
-  document.body.appendChild(valueContainer);
 
-  var sliderContainer = document.createElement("div");
-  document.body.appendChild(sliderContainer);
+  var parentContainer = document.createElement("div");
+  var styles = "width: 600px; height: 400px; background: #ededed; "
+              + "position: absolute; ";
+  parentContainer.setAttribute("style",styles);  //this line is needed -> to set width/height to the div 
+  styles = styles + setContainerAtTheCenterOfThePage(parentContainer);
+  parentContainer.setAttribute("style",styles); 
+  document.body.appendChild(parentContainer);
 
-  var options = { container: sliderContainer,
-                   R: 100,
-                   max_value: 800,
-                   min_value: 0,
-                   step: 1,
-                   color: "green",
-                   //valueContainer: valueContainer
-  };
+//-------locate valuesContainer and sliderContainer in table's columns-------
+  var table = document.createElement('table');
+  var tableStyle = "position: absolute; "
+                 + "width: " + parentContainer.style.width +"; "
+                 + "height: " + parentContainer.style.height +"; ";
+  table.setAttribute("style",tableStyle);
+  parentContainer.appendChild(table);
+  var tr = document.createElement('tr');
+  table.appendChild(tr);
 
-  new Slider(options);
+  var td1 = document.createElement('td');
+  var td1Style = "width: " + Number(table.style.width.slice(0, table.style.width.length-2))/3 +"px; "
+               + "height: " + table.style.height +"; "
+               + "position: relative; ";
+  td1.setAttribute("style", td1Style);
+  tr.appendChild(td1);
+  
+  var valuesContainer = document.createElement("div");
+  var valuesContainerStyle = "width: " + Number(table.style.width.slice(0, table.style.width.length-2))/3 +"px; "
+               + "height: " + table.style.height +"; "
+               + "position: relative; ";
+  valuesContainer.setAttribute("style", valuesContainerStyle + setDivInTheCenterOfAnotherDiv(td1, valuesContainer));
+  td1.appendChild(valuesContainer);
+
+  var td2 = document.createElement('td');
+  var td2Style = "width: " + 2*Number(table.style.width.slice(0, table.style.width.length-2))/3 +"px; "
+               + "height: " + table.style.height + "; "
+               + "position: relative; ";
+  td2.setAttribute("style", td2Style);
+  tr.appendChild(td2);
  
+  var sliderContainer = document.createElement("div");
+  var sliderContainerStyle = "position: relative; "
+                 + "width: " + 2*Number(table.style.width.slice(0, table.style.width.length-2))/3 + "px; "
+                 + "height: " + table.style.height;
+  sliderContainer.setAttribute("style",sliderContainerStyle);
+  td2.appendChild(sliderContainer);
+//----------------------------------------------------------------------------
+  var valContArr = [];
+  var RArr = [170, 140, 110, 80, 50];
+  var maxArr = [800, 666, 516, 380, 240];
+  var s = [null, null, null, null, null];
+  for (var i = 0; i<5; i++){
+    valContArr.push(document.createElement("div"));
+    valuesContainer.appendChild(valContArr[i]);
+ 
+    var options = { container: sliderContainer,
+                     R: RArr[i],
+                     max_value: maxArr[i],
+                     min_value: 0,
+                     step: 10,
+                     color: "green",
+                     valueContainer: valContArr[i]
+    };
+    s[i] = new Slider(options);
+  }    
+}
+
+function setContainerAtTheCenterOfThePage(div2){
+  var w = window.innerWidth/2;
+  var h = window.innerHeight/2;
+
+   var div2HalfWidth = Number(div2.style.width.slice(0, div2.style.width.length -2))/2;
+   var div2HalfHeight = Number(div2.style.height.slice(0, div2.style.height.length -2))/2;
+
+  return style = "-moz-transform: translate(" + (w - div2HalfWidth) +"px, " + (h - div2HalfHeight)+"px); "
+               + "-webkit-transform: translate(" + (w - div2HalfWidth) +"px, " + (h - div2HalfHeight)+"px); " 
+               + "-o-transform: translate(" + (w - div2HalfWidth) +"px, " + (h - div2HalfHeight)+"px); " 
+               + "-ms-transform: translate(" + (w - div2HalfWidth) +"px, " + (h - div2HalfHeight)+"px); " ;  
+}
+
+function setDivInTheCenterOfAnotherDiv(div1, div2){
+  //!works only if width & height of two divs are set in px! 
+  var div1HalfWidth = Number(div1.style.width.slice(0, div1.style.width.length -2))/2;
+  var div1HalfHeight = Number(div1.style.height.slice(0, div1.style.height.length -2))/2; 
+
+  var div2HalfWidth = Number(div2.style.width.slice(0, div2.style.width.length -2))/2;
+  var div2HalfHeight = Number(div2.style.height.slice(0, div2.style.height.length -2))/2; 
+
+  return style = "-moz-transform: translate(" + (div1HalfWidth - div2HalfWidth) +"px, " + (div1HalfHeight - div2HalfHeight)+"px); " 
+               + "-webkit-transform: translate(" + (div1HalfWidth - div2HalfWidth) +"px, " + (div1HalfHeight - div2HalfHeight)+"px); "
+               + "-o-transform: translate(" + (div1HalfWidth - div2HalfWidth) +"px, " + (div1HalfHeight - div2HalfHeight)+"px); "
+               + "-ms-transform: translate(" + (div1HalfWidth - div2HalfWidth) +"px, " + (div1HalfHeight - div2HalfHeight)+"px); "
+               + "transform: translate(" + (div1HalfWidth - div2HalfWidth) +"px, " + (div1HalfHeight - div2HalfHeight)+"px); ";
 }
 
 function Slider(options){
 
-  var R = options.R;
   var self = this;
-  this.r = R*0.8;
+  self.R = options.R;
+  var R = self.R;
+  this.r = R - 20;
   self.fi0 = Math.PI/2; //at fi = fi0 : psi = 0;
   self.fi = 0 ; 
   var dir = 1; //direction of psi: "+1" - clockwise, "-1" - anticlockwise
-  this.dh = (R - this.r) + 8; //#handle size
+  this.dh = 24; //#handle size
   this.container = options.container;
   self.beingDragged = false;
  
-  var max_value = options.max_value ;
-  var min_value = options.min_value ;
-  var step = options.step;
+  self.max_value = options.max_value ;
+  self.min_value = options.min_value ;
+  self.step = options.step;
+  var max_value = self.max_value ;
+  var min_value = self.min_value  ;
+  var step = self.step ;
   this.psi_step = 2*Math.PI * step /(max_value - min_value) ;
   var a = (max_value - min_value)/(2*Math.PI);
   var b = min_value;
@@ -57,85 +135,25 @@ function Slider(options){
     this.container.appendChild(valueContainer);
   }
   
-
-  this.div_slider = document.createElement("div");
-  this.div_slider.id = "slider";
-  this.container.appendChild(this.div_slider);
-
+ 
   this.div_oCircle = document.createElement("div");
-  this.div_oCircle.id = "outer_circle";
-  this.div_oCircle.style.width=2*R+"px";
-  this.div_oCircle.style.height=2*R+"px";
-  this.div_oCircle.style.borderRadius = R+"px";
-  this.div_oCircle.style.background = "#d3d3d3";
-  this.div_oCircle.style.opacity = "0.6";
-  this.div_slider.appendChild(this.div_oCircle);
-
-  //used cheating variant of "conic-gradient" via linear-gradient https://stackoverflow.com/a/22859559/8325614
-  //right half-circle hover
-  this.div_oCircleHover = document.createElement("div");
-  this.div_oCircleHover.style.width=R+"px";
-  this.div_oCircleHover.style.height=2*R+"px";
-  this.div_oCircleHover.style.borderRadius = R+"px 0 0 "+R+"px";
-  this.div_oCircleHover.style.background = "linear-gradient(0deg, rgb(0,255,0,0.5), rgb(0,255,0,0) 100px)";
-  this.div_oCircleHover.style.zIndex = "2";
-  this.div_oCircle.appendChild(this.div_oCircleHover);
-  
-  //right half-circle hover
-  this.div_oCircleHoverRight = document.createElement("div");
-  this.div_oCircleHoverRight.style.width=R+"px";
-  this.div_oCircleHoverRight.style.height=2*R+"px";
-  this.div_oCircleHoverRight.style.right=-R+"px";
-  this.div_oCircleHoverRight.style.top=-2*R+"px";
-  this.div_oCircleHoverRight.style.borderRadius = "0 "+R+"px "+R+"px 0";
-  this.div_oCircleHoverRight.style.background = "linear-gradient(180deg, rgb(0,255,0,1), rgb(0,255,0,0.5) )";
-  this.div_oCircleHoverRight.style.position = "relative";
-  this.div_oCircleHoverRight.style.zIndex = "3";
-  this.div_oCircle.appendChild(this.div_oCircleHoverRight);
-
-  //mask
-  this.div_iCircle = document.createElement("div");
-  this.div_iCircle.id = "inner_circle";
-  this.div_iCircle.style.width= 2*r+"px";
-  this.div_iCircle.style.height= 2*r+"px";
-  this.div_iCircle.style.borderRadius = r+"px";
-  this.div_iCircle.style.background = "white";
-  //this.div_iCircle.style.opacity = "0.6";
-  this.div_iCircle.style.position = "relative";
-  this.div_iCircle.style.left = (R-r)+"px";
-  this.div_iCircle.style.top= (R-r)+"px";
-  this.div_iCircle.style.zIndex = "4"; 
-  this.div_oCircleHover.appendChild(this.div_iCircle);
-  // distance to top left corner of div_iCircle from widow origin of coordinates
-  // nice approach from here https://stackoverflow.com/a/33347664/8325614
-  var x0 = self.div_iCircle.getBoundingClientRect().left;
-  var y0 = self.div_iCircle.getBoundingClientRect().top;
- 
-
-  this.div_handle = document.createElement("div");
-  this.div_handle.id = "handle";
-  this.div_handle.style.width= dh+"px";
-  this.div_handle.style.height= dh +"px";
-  this.div_handle.style.borderRadius = dh/2+"px";
-  this.div_handle.style.background = "red";
-  this.div_handle.style.border = "1px solid #a8a8a8";
-  this.div_handle.style.position = "relative";
-  this.div_handle.style.zIndex = "5"; 
-  this.div_iCircle.appendChild(this.div_handle);
- 
-  this.value = document.createElement("div");
-  this.initValue = fromPsiToValue(fiToPsi(fi0));
-  this.valueTextNode = document.createTextNode("$" + this.initValue);
-  valueContainer.appendChild(this.valueTextNode);  
-  
-  var x1 = self.div_oCircle.getBoundingClientRect().left;
-  var y1 = self.div_oCircle.getBoundingClientRect().top;
+  this.div_oCircle.className = 'oCircle';
+  self.oCircleStyles  = "position: absolute; "
+                      + "width: " + (2*R) +"px; "
+                      + "height: " + (2*R) +"px; "
+                      + "border-radius:" + R +"px; "
+                      + "background: #d3d3d3; ";
+                                       
+  self.div_oCircle.setAttribute('style', self.oCircleStyles);
+  self.oCircleStyles = self.oCircleStyles + setDivInTheCenterOfAnotherDiv(this.container, this.div_oCircle);
+  self.div_oCircle.setAttribute('style', self.oCircleStyles); 
+  this.container.appendChild(this.div_oCircle);
 
   //style - draw lines
   //used https://stackoverflow.com/a/5912283/8325614
   function createLineElement(x, y, length, angle) {
     self.line = document.createElement("div");
-    var styles = 'border: 1px solid white; '
+    var styles = 'border: 1px solid #ededed; '
                + 'width: ' + length + 'px; '
                + 'height: 0px; '
                + '-moz-transform: rotate(' + angle + 'rad); '
@@ -145,23 +163,72 @@ function Slider(options){
                + 'position: absolute; '
                + 'top: ' + y + 'px; '
                + 'left: ' + x + 'px; '
-               + 'zIndex: 1';
+               + '-moz-transform-origin: top left; '
+               + '-webkit-transform-origin: top left; '
+               + '-o-transform-origin: top left; '
+               + '-ms-transform-origin: top left; '
+               /*to avoid dragability https://www.html5rocks.com/en/tutorials/dnd/basics/*/
+               + '-moz-user-select: none; '     
+               + '-khtml-user-select: none; '
+               + '-webkit-user-select: none; '
+               + 'user-select: none; ';
     self.line.setAttribute('style', styles); 
     self.div_oCircle.appendChild(self.line); 
     return self.line;
   } 
   function drawLines(){
-    for (var i = 0; i<40; i++ ){
-      var angle = i* 2* Math.PI/40;
-      createLineElement(x1, y1+R, 2*R, angle);
+    var amountOfLines = Math.round((max_value - min_value)/step);
+    for (var i = 0; i <= amountOfLines; i++ ){
+      var angle = i* 2*Math.PI/amountOfLines;
+      createLineElement(R, R, R, angle);
     }
   }
   drawLines();
 
+  //mask
+  self.div_iCircle = document.createElement("div");
+  self.iCircleStyles  = "width: " + (2*r) +"px; "
+                      + "height: " + (2*r) +"px; "
+                      + "border-radius:" + r +"px; "
+                      + "background: #ededed; "
+                      + "left: " +(R-r)+"px; "
+                      + "top: " +(R-r)+"px; "
+                      + "position: absolute; "
+                      + '-moz-user-select: none; '
+                      + '-khtml-user-select: none; '
+                      + '-webkit-user-select: none; '
+                      + 'user-select: none; ';
+  self.div_iCircle.setAttribute('style', self.iCircleStyles); 
+  this.div_oCircle.appendChild(this.div_iCircle);
+  // distance to top left corner of div_iCircle from widow origin of coordinates
+  // nice approach from here https://stackoverflow.com/a/33347664/8325614
+ 
+
+  this.value = document.createElement("div");
+  this.initValue = fromPsiToValue(fiToPsi(fi0));
+  this.valueTextNode = document.createTextNode("$" + this.initValue);
+  valueContainer.appendChild(this.valueTextNode);  
+
+  
+
+  this.div_handle = document.createElement("div");
+  self.handleStyles  = "width:" + dh+"px; "
+                      + "height:" + dh +"px; "
+                      + "border-radius:" + dh/2+"px; "
+                      + "background: white; "
+                      + "border: 1px solid #a8a8a8; "
+                      + "position: relative; ";
+  self.div_handle.setAttribute('style', self.handleStyles); 
+  this.div_iCircle.appendChild(this.div_handle);
+ 
+
 
   self.update = function(fi){
-    self.div_handle.style.left= r + (r+(R-r)/2)*Math.cos(fi) - dh/2 +"px";  //x = r*cos(fi); x-coordinate of the #handle
-    self.div_handle.style.top= r - (r+(R-r)/2)*Math.sin(fi) - dh/2 +"px";   //y - coordinate of the #handle
+    var styles = self.handleStyles 
+                + 'left: ' + (r + (r+(R-r)/2)*Math.cos(fi) - dh/2) +"px; "   
+                + 'top: ' + (r - (r+(R-r)/2)*Math.sin(fi) - dh/2) +"px; "; 
+       
+    self.div_handle.setAttribute('style', styles);
   }
   self.update(Math.PI/2);
 
@@ -198,6 +265,8 @@ function Slider(options){
   }
 
   function moveHandle(x, y){
+    var x0 = self.div_iCircle.getBoundingClientRect().left;
+    var y0 = self.div_iCircle.getBoundingClientRect().top;
     //move handle to the coordinates
     fi = Math.atan2(-(y - y0 - self.r), x - x0 - self.r );
     
@@ -208,24 +277,25 @@ function Slider(options){
     self.valueTextNode.nodeValue = "$"+ self.value ;
     self.update(fi);
 
+    /*
     if( -Math.PI/2 <fi < Math.PI/2){
-      self.div_oCircleHoverRight.style.background = "linear-gradient(180deg, rgb(0,255,0,1), rgb(0,255,0,0.5) )";
-      self.div_oCircleHover.style.background = "linear-gradient(0deg, rgb(0,255,0,0.5), rgb(0,255,0,0) "+ y -(y0 + 2*self.r +(R-r)/2) +"px)";
+      self.div_oCircleHoverRight.style.background = "-moz-linear-gradient(180deg, rgb(0,255,0,1), rgb(0,255,0,0.5) )";
+      self.div_oCircleHover.style.background = "-moz-linear-gradient(0deg, rgb(0,255,0,0.5), rgb(0,255,0,0) "+ y -(y0 + 2*self.r +(R-r)/2) +"px)";
     }
     if (-Math.PI < fi < -Math.PI/2 ||  Math.PI > fi > Math.PI/2) {
       self.div_oCircleHover.style.background = "";
-      self.div_oCircleHoverRight.style.background = "linear-gradient(180deg, rgb(0,255,0,1), rgb(0,255,0,0.4) "+ y  +"px, transparent " + y0 +R-r+"px)";
-    }
+      self.div_oCircleHoverRight.style.background = "-moz-linear-gradient(180deg, rgb(0,255,0,1), rgb(0,255,0,0.4) "+ y  +"px, transparent " + y0 +R-r+"px)";
+    }*/
   }
 
   // -----------CALLBACKS--------------------
   function click(e){
     if (!e){e = window.event;} 
     //mask the inner circle https://stackoverflow.com/a/1369080/8325614
-    if (( e.target !== self.div_oCircle) && (e.target !== self.div_oCircleHover) && (e.target !== self.div_oCircleHoverRight)) {return;}
+    if ( e.target == self.div_iCircle) {return;}
     // find mouse coordinates
-    var x = e.pageX;
-    var y = e.pageY;
+    var x = e.clientX;
+    var y = e.clientY;
     moveHandle(x, y);
   }
 
@@ -235,12 +305,19 @@ function Slider(options){
       e = window.event;} 
     if(!self.beingDragged){return;}
     // find mouse coordinates
-    var x = e.pageX;
-    var y = e.pageY;
+    var x = e.clientX;
+    var y = e.clientY;
     moveHandle(x, y); 
   } 
 
   function enableDrag(e){
+    /**
+     * to avoid 'dragability'(works even without it), what else?
+     * http://www.javascripter.net/faq/canceleventbubbling.htm
+     * e.preventDefault ?  e.preventDefault() : e.returnValue = false;
+     * if (e.stopPropagation)    e.stopPropagation();
+     * if (!e.cancelBubble) e.cancelBubble = true;
+     */ 
     self.beingDragged = true;
     window.onmousemove = drag; 
     //drag(e);
@@ -256,57 +333,62 @@ function Slider(options){
     //??
     if (!e){e = window.event;} 
     //mask the inner circle https://stackoverflow.com/a/1369080/8325614
-    if( e.target !== self.div_oCircle && e.target !== self.div_oCircleHover && e.target !== self.div_oCircleHoverRight) return;
+    if( e.target !== self.div_oCircle ) return;
     console.log("touchclick");
     var touches = e.changedTouches;      
     // find finger's coordinates
-    var x = e.changedTouches[0].pageX;
-    var y = e.changedTouches[0].pageY;
+    var x = e.changedTouches[0].clientX;
+    var y = e.changedTouches[0].clientY;
     moveHandle(x, y);
   }
   
-  var x0;
-  var y0;
+  var xstart;
+  var ystart;
 
   function touchStartDrag(e){
+    self.div_oCircle.removeEventListener("touchstart", touchClickStart, {passive: true});
     //if (!e){ e = window.event;} 
+    if( e.target !== self.div_handle) return;
     // find finger coordinates
-    x0 = e.changedTouches[0].pageX;
-    y0 = e.changedTouches[0].pageY;
-    moveHandle(x0, y0);
+    xstart = e.changedTouches[0].clientX;
+    ystart = e.changedTouches[0].clientY;
+    
     self.div_handle.addEventListener("touchmove", touchMoveDrag, {passive: true});
+    self.div_handle.addEventListener("touchend", touchEnd, {passive: true});
+    self.div_handle.addEventListener("touchcancel", touchCancel, {passive: true});
   } 
  
   function touchMoveDrag(e){
-    var x = e.changedTouches[0].pageX;
-    var y = e.changedTouches[0].pageY;
+    var x = e.changedTouches[0].clientX;
+    var y = e.changedTouches[0].clientY;
     moveHandle(x, y);
-    self.div_handle.addEventListener("touchend", touchEnd, {passive: true});
-    self.div_handle.addEventListener("touchcancel", touchCancel, {passive: true});
+   
   }
 
   function touchEnd(e){
     self.div_handle.removeEventListener("touchmove", touchMoveDrag, {passive: true});
+    self.div_handle.removeEventListener("touchend", touchEnd, {passive: true});
+    self.div_oCircle.addEventListener("touchstart", touchClickStart, {passive: true});
   }
 
   function touchCancel(e){
-    moveHandle(x0, y0);
+    moveHandle(xstart, ystart);
+    self.div_handle.removeEventListener("touchmove", touchMoveDrag, {passive: true});
+    self.div_handle.removeEventListener("touchcancel", touchCancel, {passive: true});
+    self.div_oCircle.addEventListener("touchstart", touchClickStart, {passive: true});
   }
 
   // -----------ATTACH CALLBACKS------------
- /* 
+  
   this.div_oCircle.onclick = click;
-  this.div_oCircleHover.onclick = click;
-  this.div_oCircleHoverRight.onclick = click;
   this.div_handle.onmousedown = enableDrag;
 
   window.onmouseup = disableDrag; 
-  */
+  
   // -----------ATTACH TOUCH CALLBACKS------------
 
   this.div_oCircle.addEventListener("touchstart", touchClickStart, {passive: true});
-  this.div_oCircleHover.addEventListener("touchstart", touchClickStart, {passive: true});
-  this.div_oCircleHoverRight.addEventListener("touchstart", touchClickStart, {passive: true});
+  
   
   this.div_handle.addEventListener("touchstart", touchStartDrag, {passive: true});
 
