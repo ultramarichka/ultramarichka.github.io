@@ -3,8 +3,16 @@ document.body.onload = demo();
 function demo(){
 
   var parentContainer = document.createElement("div");
-  var styles = "width: 600px; height: 400px; background: #ededed; "
-              + "position: absolute; ";
+  var styles;
+  if (screen.width <= "600px"){
+    styles = "width: " + screen.width + "px; "
+           + "height: " + (screen.width *3/2) + "px; "
+           + "background: #ededed; "
+           + "position: absolute; ";
+  } else {
+    styles = "width: 600px; height: 400px; background: #ededed; "
+           + "position: absolute; ";
+  }
   parentContainer.setAttribute("style",styles);  //this line is needed -> to set width/height to the div 
   styles = styles + setContainerAtTheCenterOfThePage(parentContainer);
   parentContainer.setAttribute("style",styles); 
@@ -17,36 +25,67 @@ function demo(){
                  + "height: " + parentContainer.style.height +"; ";
   table.setAttribute("style",tableStyle);
   parentContainer.appendChild(table);
-  var tr = document.createElement('tr');
-  table.appendChild(tr);
 
-  var td1 = document.createElement('td');
-  var td1Style = "width: " + Number(table.style.width.slice(0, table.style.width.length-2))/3 +"px; "
-               + "height: " + table.style.height +"; "
-               + "position: relative; ";
-  td1.setAttribute("style", td1Style);
-  tr.appendChild(td1);
-  
-  var valuesContainer = document.createElement("div");
-  var valuesContainerStyle = "width: " + Number(table.style.width.slice(0, table.style.width.length-2))/3 +"px; "
-               + "height: " + table.style.height +"; "
-               + "position: relative; ";
-  valuesContainer.setAttribute("style", valuesContainerStyle + setDivInTheCenterOfAnotherDiv(td1, valuesContainer));
-  td1.appendChild(valuesContainer);
-
-  var td2 = document.createElement('td');
-  var td2Style = "width: " + 2*Number(table.style.width.slice(0, table.style.width.length-2))/3 +"px; "
-               + "height: " + table.style.height + "; "
-               + "position: relative; ";
-  td2.setAttribute("style", td2Style);
-  tr.appendChild(td2);
  
-  var sliderContainer = document.createElement("div");
-  var sliderContainerStyle = "position: relative; "
-                 + "width: " + 2*Number(table.style.width.slice(0, table.style.width.length-2))/3 + "px; "
-                 + "height: " + table.style.height;
-  sliderContainer.setAttribute("style",sliderContainerStyle);
-  td2.appendChild(sliderContainer);
+  if (screen.width <= "600px"){
+    var tr1 = document.createElement('tr');
+    var tr1Style = "width: " + table.style.width + "; "
+                 + "height: " + Number(table.style.height.slice(0, table.style.height.length-2))/3 +"px; "
+                 + "position: relative; ";
+    tr1.setAttribute("style", tr1Style);
+    table.appendChild(tr1);
+
+    var valuesContainer = document.createElement("div");
+    var valuesContainerStyle = tr1Style;
+    valuesContainer.setAttribute("style", valuesContainerStyle + setDivInTheCenterOfAnotherDiv(tr1, valuesContainer));
+    td1.appendChild(valuesContainer);
+
+    var tr2 = document.createElement('tr');
+    var tr1Style = "width: " + table.style.width + "; "
+                 + "height: " + 2*Number(table.style.height.slice(0, table.style.height.length-2))/3 +"px; "
+                 + "position: relative; ";
+    tr2.setAttribute("style", tr2Style);
+    table.appendChild(tr2);
+
+    var sliderContainer = document.createElement("div");
+    var sliderContainerStyle = tr2Style;
+    sliderContainer.setAttribute("style",sliderContainerStyle);
+    tr2.appendChild(sliderContainer);
+  }
+
+  else {
+    var tr = document.createElement('tr');
+    table.appendChild(tr);
+
+    var td1 = document.createElement('td');
+    var td1Style = "width: " + Number(table.style.width.slice(0, table.style.width.length-2))/3 +"px; "
+                 + "height: " + table.style.height +"; "
+                 + "position: relative; ";
+    td1.setAttribute("style", td1Style);
+    tr.appendChild(td1);
+    
+    var valuesContainer = document.createElement("div");
+    var valuesContainerStyle = "width: " + Number(table.style.width.slice(0, table.style.width.length-2))/3 +"px; "
+                 + "height: " + table.style.height +"; "
+                 + "position: relative; ";
+    valuesContainer.setAttribute("style", valuesContainerStyle + setDivInTheCenterOfAnotherDiv(td1, valuesContainer));
+    td1.appendChild(valuesContainer);
+
+    var td2 = document.createElement('td');
+    var td2Style = "width: " + 2*Number(table.style.width.slice(0, table.style.width.length-2))/3 +"px; "
+                 + "height: " + table.style.height + "; "
+                 + "position: relative; ";
+    td2.setAttribute("style", td2Style);
+    tr.appendChild(td2);
+   
+    var sliderContainer = document.createElement("div");
+    var sliderContainerStyle = "position: relative; "
+                   + "width: " + 2*Number(table.style.width.slice(0, table.style.width.length-2))/3 + "px; "
+                   + "height: " + table.style.height;
+    sliderContainer.setAttribute("style",sliderContainerStyle);
+    td2.appendChild(sliderContainer);
+  }
+
 //----------------------------------------------------------------------------
   var valContArr = [];
   var RArr = [170, 140, 110, 80, 50];
