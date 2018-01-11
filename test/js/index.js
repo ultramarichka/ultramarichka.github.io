@@ -1,12 +1,12 @@
 document.body.onload = demo();
 
 function demo(){
-
+  var w = document.documentElement.clientWidth;  
   var parentContainer = document.createElement("div");
   var styles;
-  if (screen.width <= "600px"){
-    styles = "width: " + screen.width + "px; "
-           + "height: " + (screen.width *3/2) + "px; "
+  if (w <= 600){
+    styles = "width: " + (0.90*w) + "px; "
+           + "height: " + (3/2*0.90*w) + "px; "
            + "background: #ededed; "
            + "position: absolute; ";
   } else {
@@ -27,7 +27,7 @@ function demo(){
   parentContainer.appendChild(table);
 
  
-  if (screen.width <= "600px"){
+  if (w <= 600){
     var tr1 = document.createElement('tr');
     var tr1Style = "width: " + table.style.width + "; "
                  + "height: " + Number(table.style.height.slice(0, table.style.height.length-2))/3 +"px; "
@@ -37,11 +37,11 @@ function demo(){
 
     var valuesContainer = document.createElement("div");
     var valuesContainerStyle = tr1Style;
-    valuesContainer.setAttribute("style", valuesContainerStyle + setDivInTheCenterOfAnotherDiv(tr1, valuesContainer));
-    td1.appendChild(valuesContainer);
+    valuesContainer.setAttribute("style", valuesContainerStyle );
+    tr1.appendChild(valuesContainer);
 
     var tr2 = document.createElement('tr');
-    var tr1Style = "width: " + table.style.width + "; "
+    var tr2Style = "width: " + table.style.width + "; "
                  + "height: " + 2*Number(table.style.height.slice(0, table.style.height.length-2))/3 +"px; "
                  + "position: relative; ";
     tr2.setAttribute("style", tr2Style);
@@ -49,7 +49,7 @@ function demo(){
 
     var sliderContainer = document.createElement("div");
     var sliderContainerStyle = tr2Style;
-    sliderContainer.setAttribute("style",sliderContainerStyle);
+    sliderContainer.setAttribute("style",sliderContainerStyle );
     tr2.appendChild(sliderContainer);
   }
 
@@ -65,9 +65,7 @@ function demo(){
     tr.appendChild(td1);
     
     var valuesContainer = document.createElement("div");
-    var valuesContainerStyle = "width: " + Number(table.style.width.slice(0, table.style.width.length-2))/3 +"px; "
-                 + "height: " + table.style.height +"; "
-                 + "position: relative; ";
+    var valuesContainerStyle = td1Style;
     valuesContainer.setAttribute("style", valuesContainerStyle + setDivInTheCenterOfAnotherDiv(td1, valuesContainer));
     td1.appendChild(valuesContainer);
 
@@ -79,21 +77,32 @@ function demo(){
     tr.appendChild(td2);
    
     var sliderContainer = document.createElement("div");
-    var sliderContainerStyle = "position: relative; "
-                   + "width: " + 2*Number(table.style.width.slice(0, table.style.width.length-2))/3 + "px; "
-                   + "height: " + table.style.height;
+    var sliderContainerStyle = td2Style;
     sliderContainer.setAttribute("style",sliderContainerStyle);
     td2.appendChild(sliderContainer);
   }
 
+  
 //----------------------------------------------------------------------------
   var valContArr = [];
-  var RArr = [170, 140, 110, 80, 50];
+  var RArr = [150, 120, 90, 60, 30];
   var maxArr = [800, 666, 516, 380, 240];
   var s = [null, null, null, null, null];
+  var valueTextNodeArr = [null, null, null, null, null];
+  var trackwidth = 20;
+  
+
+  if (w <= 600){
+    RArr = RArr.map(function(el){return el*w/440+30});
+    trackwidth = w/(RArr.length*2+8);
+  }
+
   for (var i = 0; i<5; i++){
     valContArr.push(document.createElement("div"));
     valuesContainer.appendChild(valContArr[i]);
+
+    valueTextNodeArr[i] = document.createTextNode("");
+    valContArr[i].appendChild(valueTextNodeArr[i]); 
  
     var options = { container: sliderContainer,
                      R: RArr[i],
@@ -101,7 +110,10 @@ function demo(){
                      min_value: 0,
                      step: 10,
                      color: "green",
-                     valueContainer: valContArr[i]
+                     valueCallback: function (v) {  
+                       valueTextNodeArr[i].nodeValue = "$" + v;
+                     },
+                     trackwidth: trackwidth,
     };
     s[i] = new Slider(options);
   }    
@@ -140,23 +152,21 @@ function Slider(options){
   var self = this;
   self.R = options.R;
   var R = self.R;
-  this.r = R - 20;
+  if(!options.trackwidth)options.trackwidth=20;
+  this.r = R - options.trackwidth;
   self.fi0 = Math.PI/2; //at fi = fi0 : psi = 0;
   self.fi = 0 ; 
   var dir = 1; //direction of psi: "+1" - clockwise, "-1" - anticlockwise
-  this.dh = 24; //#handle size
+  this.dh = options.trackwidth*1.08; //#handle size
   this.container = options.container;
   self.beingDragged = false;
-  self.maxFlag = false;
-  self.beingMax = false;
-  self.beingO = false;
-  self.oFlag = false;
  
   self.max_value = options.max_value ;
   self.min_value = options.min_value ;
   self.step = options.step;
   var max_value = self.max_value ;
   var min_value = self.min_value  ;
+  self.value = self.min_value;
   var step = self.step ;
   this.psi_step = 2*Math.PI * step /(max_value - min_value) ;
   var a = (max_value - min_value)/(2*Math.PI);
@@ -168,15 +178,7 @@ function Slider(options){
   var fi0 = self.fi0; 
   var psi_step = self.psi_step;
 
-  //if valueContainer is not set -> create and set it to 'default'
-  if(options.valueContainer){
-    var valueContainer = options.valueContainer;
-  } else {
-    var valueContainer = document.createElement("div");
-    this.container.appendChild(valueContainer);
-  }
   
- 
   this.div_oCircle = document.createElement("div");
   this.div_oCircle.className = 'oCircle';
   self.oCircleStyles  = "position: absolute; "
@@ -246,13 +248,6 @@ function Slider(options){
   // nice approach from here https://stackoverflow.com/a/33347664/8325614
  
 
-  this.value = document.createElement("div");
-  this.initValue = fromPsiToValue(fiToPsi(fi0));
-  this.valueTextNode = document.createTextNode("$" + this.initValue);
-  valueContainer.appendChild(this.valueTextNode);  
-
-  
-
   this.div_handle = document.createElement("div");
   self.handleStyles  = "width:" + dh+"px; "
                       + "height:" + dh +"px; "
@@ -264,15 +259,20 @@ function Slider(options){
   this.div_iCircle.appendChild(this.div_handle);
  
 
-
-  self.update = function(fi){
-    var styles = self.handleStyles 
-                + 'left: ' + (r + (r+(R-r)/2)*Math.cos(fi) - dh/2) +"px; "   
-                + 'top: ' + (r - (r+(R-r)/2)*Math.sin(fi) - dh/2) +"px; "; 
-       
-    self.div_handle.setAttribute('style', styles);
+  //self.update = 
+  function updateFunc (fi, v){
+    self.update = function(){
+      var styles = self.handleStyles 
+                  + 'left: ' + (r + (r+(R-r)/2)*Math.cos(fi) - dh/2) +"px; "   
+                  + 'top: ' + (r - (r+(R-r)/2)*Math.sin(fi) - dh/2) +"px; "; 
+         
+      self.div_handle.setAttribute('style', styles);
+      options.valueCallback(v);
+      self.fi = fi;
+      self.value = v;
+    } 
   }
-  self.update(Math.PI/2);
+  updateFunc(self.fi0, self.value)();
 
   function fiToPsi(fi){   
   /**
@@ -295,6 +295,7 @@ function Slider(options){
         psi = -dir*fi + dir*fi0;
       }     
     }
+    psi = (Math.round(psi/psi_step))*psi_step;
     return psi; 
   }
 
@@ -306,58 +307,30 @@ function Slider(options){
     return (value - b)/a;   
   }
 
-  function moveHandle(x, y){
+  function getFiV(x, y){
     var x0 = self.div_iCircle.getBoundingClientRect().left;
     var y0 = self.div_iCircle.getBoundingClientRect().top;
     //move handle to the coordinates
     fi = Math.atan2(-(y - y0 - self.r), x - x0 - self.r );
     
     var psi = fiToPsi(fi);
-    psi = (Math.round(psi/psi_step))*psi_step;
-    self.value = fromPsiToValue(psi);
-    
-    self.valueTextNode.nodeValue = "$"+ self.value ;
-    self.update(fi);
+    var v = fromPsiToValue(psi);
+    return [fi,v];
   }
 
-  function stopHandleAtMax(x, y){
-    //stop handle at value = max
-    var x0 = self.div_iCircle.getBoundingClientRect().left;
-    var y0 = self.div_iCircle.getBoundingClientRect().top;
-    fi = Math.atan2(-(y - y0 - self.r), x - x0 - self.r );
+  self.dragValidate = function (fi,v){
+    // Validate the next update, so that we don't cross the origin
     
-    var xmax = self.div_iCircle.getBoundingClientRect().left + self.r;
-    var ymax = Math.round(self.div_iCircle.getBoundingClientRect().top - dh/2);
-
-    if(!self.beingMax && fi < Math.PI/2 + 2*psi_step && fi > Math.PI/2){
-      self.maxFlag = true;
+    var dv = v - self.value;
+    if(Math.abs(dv)>0.5*(self.max_value - self.min_value)){   
+      fi = self.fi0;
+      if( dv > 0 ){
+        v = self.min_value;
+      } else {
+        v = self.max_value;
+      }
     }
-    if (self.maxFlag && fi < Math.PI/2 && fi > -Math.PI){
-      moveHandle(xmax, ymax);
-      self.value = self.max_value;
-      self.valueTextNode.nodeValue = "$"+ self.value ;
-      self.beingMax = true;
-    } 
-    if (self.beingMax && fi >= Math.PI/2 + 2*psi_step){
-      self.maxFlag = false;
-      self.beingMax = false;
-    } 
-    //for 0 
-    if(!self.beingO && fi < Math.PI/2 && fi > Math.PI/2 - psi_step){
-      self.oFlag = true;
-    }
-    if (self.oFlag && fi > Math.PI/2 && fi < Math.PI){
-      console.log("stop condition");
-      moveHandle(xmax, ymax);
-      self.valueTextNode.nodeValue = "$0" ;
-      self.beingO = true;
-      self.beingMax = true;
-    } 
-    if (self.beingO && fi <= Math.PI/2 - 2*psi_step){
-      self.oFlag = false;
-      self.beingO = false;
-      self.beingMax = false;
-    }     
+    return [fi, v];
   }
 
   // -----------CALLBACKS--------------------
@@ -368,7 +341,8 @@ function Slider(options){
     // find mouse coordinates
     var x = e.clientX;
     var y = e.clientY;
-    moveHandle(x, y);
+    var FiV = getFiV(x, y);
+    update(FiV[0], FiV[1])();
   }
 
   function drag(e){
@@ -377,8 +351,9 @@ function Slider(options){
     // find mouse coordinates
     var x = e.clientX;
     var y = e.clientY;
-    moveHandle(x, y); 
-    stopHandleAtMax(x, y);
+    var FiV = getFiV(x, y);
+    FiV = self.dragValidate(FiV[0],FiV[1]);
+    update(FiV[0], FiV[1])(); 
   } 
 
   function enableDrag(e){
@@ -388,8 +363,6 @@ function Slider(options){
 
   function disableDrag (){
     self.beingDragged = false;
-    self.maxFlag = false;
-    self.oFlag = false;
     window.onmousemove = undefined;
   }
   
@@ -398,12 +371,12 @@ function Slider(options){
     if (!e){e = window.event;} 
     //mask the inner circle https://stackoverflow.com/a/1369080/8325614
     if( e.target !== self.div_oCircle ) return;
-    console.log("touchclick");
     var touches = e.changedTouches;      
     // find finger's coordinates
     var x = e.changedTouches[0].clientX;
     var y = e.changedTouches[0].clientY;
-    moveHandle(x, y);
+    var FiV = getFiV(x, y);
+    update(FiV[0], FiV[1])();
   }
   
   var xstart;
@@ -417,27 +390,32 @@ function Slider(options){
     xstart = e.changedTouches[0].clientX;
     ystart = e.changedTouches[0].clientY;
     
-    self.div_handle.addEventListener("touchmove", touchMoveDrag, {passive: true});
+    self.div_handle.addEventListener("touchmove", touchMoveDrag, false);
     self.div_handle.addEventListener("touchend", touchEnd, {passive: true});
     self.div_handle.addEventListener("touchcancel", touchCancel, {passive: true});
   } 
  
   function touchMoveDrag(e){
+    e.preventDefault();
+    e.stopPropagation();
+
     var x = e.changedTouches[0].clientX;
     var y = e.changedTouches[0].clientY;
-    moveHandle(x, y);
-   
+    var FiV = getFiV(x, y);
+    FiV = self.dragValidate(FiV[0],FiV[1]);
+    update(FiV[0], FiV[1])();
   }
 
   function touchEnd(e){
-    self.div_handle.removeEventListener("touchmove", touchMoveDrag, {passive: true});
+    self.div_handle.removeEventListener("touchmove", touchMoveDrag, false);
     self.div_handle.removeEventListener("touchend", touchEnd, {passive: true});
     self.div_oCircle.addEventListener("touchstart", touchClickStart, {passive: true});
   }
 
   function touchCancel(e){
-    moveHandle(xstart, ystart);
-    self.div_handle.removeEventListener("touchmove", touchMoveDrag, {passive: true});
+    var FiV=getFiV(xstart, ystart);
+    update(FiV[0],FiV[1])();
+    self.div_handle.removeEventListener("touchmove", touchMoveDrag, false);
     self.div_handle.removeEventListener("touchcancel", touchCancel, {passive: true});
     self.div_oCircle.addEventListener("touchstart", touchClickStart, {passive: true});
   }
@@ -455,6 +433,11 @@ function Slider(options){
   
   
   this.div_handle.addEventListener("touchstart", touchStartDrag, {passive: true});
+
+  /*document.body.addEventListener("touchmove", function(event) {
+      event.preventDefault();
+      event.stopPropagation();
+  }, false);*/
 
   /*touch events always target the element where that touch STARTED, while mouse events target 
    the element currently under the mouse cursor.
