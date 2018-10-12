@@ -69,7 +69,7 @@ function successGeolocationFinder(response){
   buttonCallback();
 }
 //GETS YOUR GEOLOCATION WITH HELP OF freegeoip.net (THAT GETS YOUR IP) 
-$.getJSON('http://api.ipstack.com/check?access_key=01f168714c408f0149af9154518276c7', successGeolocationFinder);
+$.getJSON('http://api.ipstack.com/check?access_key=01f168714c408f0149af9154518276c7&security=1&output%20=%20json', successGeolocationFinder);
     
   
 function pressingEnterFunc(event){
