@@ -71,7 +71,7 @@ function successGeolocationFinder(response){
 }
 //GETS YOUR GEOLOCATION WITH HELP OF freegeoip.net (THAT GETS YOUR IP) 
 //$.getJSON('http://api.ipstack.com/check?access_key=01f168714c408f0149af9154518276c7&output=json&legacy=1', successGeolocationFinder);
- $.getJSON('http://ip-api.com/json', successGeolocationFinder);
+ $.getJSON('https://api.ipdata.co/?api-key=test', successGeolocationFinder);
   
 function pressingEnterFunc(event){
   if(event.keyCode == 13){ 
