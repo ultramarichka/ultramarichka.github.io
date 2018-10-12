@@ -65,11 +65,12 @@ function buttonCallback(){
 
 
 function successGeolocationFinder(response){
+  console.log(response, response.city);
   $("#cities").val(response.city); 
   buttonCallback();
 }
 //GETS YOUR GEOLOCATION WITH HELP OF freegeoip.net (THAT GETS YOUR IP) 
-$.getJSON('http://api.ipstack.com/check?access_key=01f168714c408f0149af9154518276c7&security=1&output%20=%20json', successGeolocationFinder);
+$.getJSON('http://api.ipstack.com/check?access_key=01f168714c408f0149af9154518276c7&security=1&output=json', successGeolocationFinder);
     
   
 function pressingEnterFunc(event){
