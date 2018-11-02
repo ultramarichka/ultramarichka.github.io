@@ -1,0 +1,280 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/* navigation */
+.navigation {
+  height: 50px;
+  background: #133838;
+}
+
+.nav-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+nav {
+  float: right;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  float: left;
+  position: relative;
+}
+
+.tochka {
+  line-height: 50px;
+  color: #80ecec;
+  display: inline;
+}
+
+nav ul li a,
+nav ul li a:visited {
+  display: block;
+  padding: 0 20px;
+  line-height: 50px;
+  background: #133838;
+  color: #80ecec;
+  text-decoration: none;
+}
+
+nav ul li a:hover,
+nav ul li a:visited:hover {
+  background: #2581DC;
+  color: #ffffff;
+}
+
+/* Mobile navigation */
+
+.nav-mobile {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #133838;/*#262626;*/
+  height: 50px;
+  width: 50px;
+}
+
+@media only screen and (max-width: 800px) {
+  .nav-mobile {
+    display: block;
+  }
+  nav {
+    width: 100%;
+    padding: 50px 0 15px;
+  }
+  nav ul {
+    display: none;
+  }
+  nav ul li {
+    float: none;
+  }
+  nav ul li a {
+    padding: 15px;
+    line-height: 20px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .nav-list {
+    display: block !important;
+  }
+}
+
+#nav-toggle {
+  position: absolute;
+  left: 0px;
+  top: 14px;
+  cursor: pointer;
+  padding: 10px 28px 12px 0px;  /*top, right: width-of-nav-toggle span*/
+}
+
+#nav-toggle span,
+#nav-toggle span:before,
+#nav-toggle span:after {
+  cursor: pointer;
+  border-radius: 1px;
+  height: 2px;
+  width: 28px;
+  background: #80ecec;
+  position: absolute;
+  display: block;
+  content: '';
+  transition: all 300ms ease-in-out;
+}
+
+#nav-toggle span:before {
+  top: -10px;
+}
+
+#nav-toggle span:after {
+  bottom: -10px;
+}
+
+#nav-toggle.active span {
+  background-color: transparent;
+}
+
+#nav-toggle.active span:before,
+#nav-toggle.active span:after {
+  top: 0;
+}
+
+#nav-toggle.active span:before {
+  transform: rotate(45deg);
+}
+
+#nav-toggle.active span:after {
+  transform: rotate(-45deg);
+}
+/*end of navigation*/
+
+.centered {
+  text-align: center;
+}
+h1 {
+  font-size: 2.5rem;
+  font-family: 'Dancing Script', cursive, Arial;
+  color: black;
+}
+
+@media screen and (min-width: 768px) {
+  h1 {
+    font-size: 4rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  h1 {
+    font-size: 6rem;
+  }
+}
+
+
+/*#first_page {
+  margin-top: -5%;
+  text-align: center;
+}
+#buttons_block {
+  text-align: center;
+  padding-top: 5%;
+}
+
+hr {
+  margin-top: 5%;
+  border-color: #707070;
+
+
+}*/
+
+
+.buttons {
+    margin: 10px;
+}
+#Vkontakte {
+  background-color: #45668e;
+  color: #FFF;
+}
+.btn-codepen {
+  background-color: black;
+  color: #FFF;
+}
+.buttons:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.5), 0 17px 50px 0 rgba(0,0,0,0.1);
+}
+.btn-codepen:hover, .btn-codepen:focus {
+  color: #A9A9A9;
+  outline: none !important;
+
+}
+/*.buttons:active {
+  outline: none !important;
+}*/
+
+#github{
+  border: 2px solid #A9A9A9;
+}
+
+.backgrounds-maryna {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+#Home{
+  background-color: lightblue;
+  padding: 20% 0 25% 0;
+  }
+#About {
+  background-image: url(http://i63.tinypic.com/1h7cxd.jpg);
+  padding: 10% 0 20% 0;
+}
+#me {
+  border-color: gray;
+  border-width: 5px;
+  border-style: solid;
+  border-radius: 50%;
+  margin: 10% 0 0 0;
+}
+
+#Projects {
+  background-image: url(http://i66.tinypic.com/33jh9if.jpg);
+  padding: 10% 0 25% 0;
+}
+
+.Project_boxes {
+  margin-bottom: 30px;
+  padding-left: 0;
+  padding-right: 0;
+}
+.Project_boxes:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.3), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+.icon {
+  text-align: center;
+  font-size: 70px;
+  color: white;
+  opacity: 0;
+  position: absolute;
+  top: 27%; left: 15px; bottom: 30px; right: 15px;
+}
+.background-icon {
+  opacity: 0;
+  position: absolute;
+  background: black;
+  top: 0; left: 0; bottom: 30px; right: 0;
+}
+.image_Projects {
+  /*border: 7px solid gray;*/
+}
+.image_Projects:hover .background-icon {
+     opacity: 0.4;
+}
+.image_Projects:hover .icon {
+     opacity: 1;
+}
+.Caption_Projects {
+  background-color: white;
+  border-width: 1px 0 0 0;
+  border-color: black;
+  border-style: solid;
+  font-size: 20px;
+  text-align: center;
+  font-family: Arial;
+  }
+
+#Contact {
+  background-image: url(http://i66.tinypic.com/2ut3ubp.jpg);
+  padding: 20% 0 25% 0;
+  }
