@@ -12,12 +12,16 @@ html {
 }
 
 .nav-container {
-  max-width: 1000px;
+  /*max-width: 1000px;*/
   margin: 0 auto;
 }
 
 nav {
-  float: right;
+  /*float: right;*/
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  transform: translate(-35%);
 }
 
 nav ul {
@@ -29,6 +33,7 @@ nav ul {
 nav ul li {
   float: left;
   position: relative;
+  /*padding: 0 50px;*/
 }
 
 .tochka {
@@ -40,7 +45,7 @@ nav ul li {
 nav ul li a,
 nav ul li a:visited {
   display: block;
-  padding: 0 20px;
+  padding: 0 80px;
   line-height: 50px;
   background: #133838;
   color: #80ecec;
@@ -139,10 +144,9 @@ nav ul li a:visited:hover {
 }
 /*end of navigation*/
 
-.centered {
-  text-align: center;
-}
+
 h1 {
+  margin: 0 auto;
   font-size: 2.5rem;
   font-family: 'Dancing Script', cursive, Arial;
   color: black;
@@ -159,22 +163,71 @@ h1 {
   }
 }
 
-
-/*#first_page {
-  margin-top: -5%;
-  text-align: center;
-}
-#buttons_block {
-  text-align: center;
-  padding-top: 5%;
+.backgrounds-maryna {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  min-height: 100vh;
 }
 
-hr {
-  margin-top: 5%;
-  border-color: #707070;
+#home{
+  background-color: lightblue;
+  /*padding: 20% 0 25% 0;*/
+}
+#home h1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.container {
+  margin: 0 auto;
+  padding: 0 10px;
+  max-width: 1000px;
+}
+.row::before,
+.row::after {
+  display: table;
+  content: " ";
+  clear: both;
+}
+.one,
+.one-third,
+.two-thirds,
+.one-fourth,
+.half {
+  width: 100%;
+}
+.column {
+  padding: 0 20px;
+}
+
+@media only screen and (min-width: 800px) {
+  .one {
+    width: 100%;
+  }
+  .half {
+    width: calc(100% / 2);
+  }
+  .one-third {
+    width: calc(100% / 3);
+  }
+  .one-fourth {
+    width: calc(100% / 4);
+  }
+  .one-sixth {
+    width: calc(100% / 6);
+  }
+  .two-thirds {
+    width: calc(100% / 3 * 2);
+  }
+  .column {
+    float: left;
+  }
+}
 
 
-}*/
 
 
 .buttons {
@@ -204,28 +257,43 @@ hr {
   border: 2px solid #A9A9A9;
 }
 
-.backgrounds-maryna {
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
-  background-size: cover;
-  min-height: 100vh;
-}
-
-#Home{
-  background-color: lightblue;
-  padding: 20% 0 25% 0;
-  }
 #About {
   background-image: url(http://i63.tinypic.com/1h7cxd.jpg);
-  padding: 10% 0 20% 0;
+  /*padding: 10% 0 20% 0;*/
+}
+font {
+  font-size: 1.2rem;
+}
+#certificate {
+  vertical-align: middle;
+  display: inline-block;
+  height: auto;
+  width: 80px;
+  cursor: pointer;
+}
+ul.nolist {
+  list-style-type: none;
+  margin: 5px 0;
+  padding-left: 15px;
+}
+ul.nolist li::before {
+  content: "- ";
+}
+.firstli::before {
+  content: "You need ";
+}
+#competences {
+  font-weight: 700;
+  line-height: 25px;
 }
 #me {
   border-color: gray;
   border-width: 5px;
   border-style: solid;
   border-radius: 50%;
-  margin: 10% 0 0 0;
+  /*margin: 10% 0 0 0;*/
+  max-width:100%;
+  max-height:100%;
 }
 
 #Projects {

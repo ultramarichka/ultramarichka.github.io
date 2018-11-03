@@ -1,6 +1,5 @@
 (function($) { // Begin jQuery
   $(function() { // DOM ready
-    console.log("koko");
     // Toggle open and close nav styles on click
     $('#nav-toggle').click(function() {
       $('nav ul').slideToggle();
@@ -9,5 +8,9 @@
     document.querySelector('#nav-toggle').addEventListener('click', function() {
       this.classList.toggle('active');
     });
+
+
+    var heightOfHome = $(window).height() -50; //-navbarHeight (or -footerHeight)
+    $('.hminus50').css('min-height', heightOfHome);
   }); // end DOM ready
 })(jQuery); // end jQuery
