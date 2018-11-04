@@ -18,10 +18,10 @@ html {
 
 nav {
   /*float: right;*/
-  width: 100%;
+  /*width: 100%;*/
   position: absolute;
   left: 50%;
-  transform: translate(-35%);
+  transform: translate(-50%);
 }
 
 nav ul {
@@ -45,7 +45,7 @@ nav ul li {
 nav ul li a,
 nav ul li a:visited {
   display: block;
-  padding: 0 80px;
+  padding: 0 30px;
   line-height: 50px;
   background: #133838;
   color: #80ecec;
@@ -70,7 +70,10 @@ nav ul li a:visited:hover {
   width: 50px;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 768px) {
+  .tochka {
+    display: none;
+  }
   .nav-mobile {
     display: block;
   }
@@ -144,25 +147,49 @@ nav ul li a:visited:hover {
 }
 /*end of navigation*/
 
-
+/*FONTS*/
 h1 {
   margin: 0 auto;
   font-size: 2.5rem;
   font-family: 'Dancing Script', cursive, Arial;
   color: black;
 }
+h3 {
+  font-size: 1rem;
+}
 
 @media screen and (min-width: 768px) {
   h1 {
     font-size: 4rem;
   }
+  h3 {
+    font-size: 1.3rem;
+  }
+  #contacts_text {
+    position: relative;
+    margin-top: 25vh;
+    left: 50%;
+  }
 }
 @media screen and (min-width: 992px) {
   h1 {
-    font-size: 6rem;
+    font-size: 5.5rem;
   }
 }
+#home h1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#about h1 {
+  margin: 30px auto;
+}
+.centered {
+  text-align: center;
+}
 
+/*BACKGROUNDS*/
 .backgrounds-maryna {
   background-repeat: no-repeat;
   background-position: center;
@@ -172,15 +199,25 @@ h1 {
 }
 
 #home{
-  background-color: lightblue;
-  /*padding: 20% 0 25% 0;*/
+  background-color: white;
 }
-#home h1 {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+#about {
+  background-color: #e7fbfb;
 }
+
+
+.margint30 {
+  margin-top: 30px;
+}
+.marginb30 {
+  margin-bottom: 30px;
+}
+@media only screen and (min-width: 768px) {
+  .marginl50 {
+    margin-left: 50%;
+  }
+}
+/*grid system*/
 .container {
   margin: 0 auto;
   padding: 0 10px;
@@ -203,7 +240,7 @@ h1 {
   padding: 0 20px;
 }
 
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 768px) {
   .one {
     width: 100%;
   }
@@ -226,8 +263,52 @@ h1 {
     float: left;
   }
 }
+/*end of grid system*/
+/*ABOUT*/
 
-
+font {
+  font-size: 0.8rem;
+}
+@media only screen and (min-width: 768px) {
+  font {
+    font-size: 1.2rem;
+  }
+}
+#certificate {
+  vertical-align: middle;
+  display: inline-block;
+  height: auto;
+  width: 80px;
+  cursor: pointer;
+}
+ul.nolist {
+  list-style-type: none;
+  margin: 5px 0;
+  padding-left: 15px;
+}
+ul.nolist li::before {
+  content: "- ";
+}
+.firstli::before {
+  content: "You need ";
+}
+#competences {
+  font-size: 1.1rem;
+}
+#competencesul {
+  font-weight: 700;
+  line-height: 25px;
+}
+#me {
+  border-color: gray;
+  border-width: 5px;
+  border-style: solid;
+  border-radius: 50%;
+  /*margin: 10% 0 0 0;*/
+  max-width:100%;
+  max-height:100%;
+}
+/*end of ABOUT*/
 
 
 .buttons {
@@ -257,44 +338,7 @@ h1 {
   border: 2px solid #A9A9A9;
 }
 
-#About {
-  background-image: url(http://i63.tinypic.com/1h7cxd.jpg);
-  /*padding: 10% 0 20% 0;*/
-}
-font {
-  font-size: 1.2rem;
-}
-#certificate {
-  vertical-align: middle;
-  display: inline-block;
-  height: auto;
-  width: 80px;
-  cursor: pointer;
-}
-ul.nolist {
-  list-style-type: none;
-  margin: 5px 0;
-  padding-left: 15px;
-}
-ul.nolist li::before {
-  content: "- ";
-}
-.firstli::before {
-  content: "You need ";
-}
-#competences {
-  font-weight: 700;
-  line-height: 25px;
-}
-#me {
-  border-color: gray;
-  border-width: 5px;
-  border-style: solid;
-  border-radius: 50%;
-  /*margin: 10% 0 0 0;*/
-  max-width:100%;
-  max-height:100%;
-}
+
 
 #Projects {
   background-image: url(http://i66.tinypic.com/33jh9if.jpg);
