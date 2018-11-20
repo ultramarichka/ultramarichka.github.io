@@ -11,18 +11,9 @@ html, body {
   min-height: 100vh;
   opacity: 0.9;
 }
-.fullWidth {
-  width: 240px;
-  margin: auto 0;
-}
+
 .margint10{
  margin-top: 10%;
-}
-
-@media screen and (min-width: 768px){
-  .fullWidth a {
-    width: 500px;
-  }
 }
 
 #result div {
@@ -51,14 +42,22 @@ h2{
 label, input, #searchButton {
   display: inline-block;
 }
-input {
-  width: 150px;
-  margin-right: 0;
-}
-#searchButton {
-  width: 80px;
-  margin-left: 0;
+
+#content a, input, #searchButton {
+  width: 100%;
 }
 .setheight {
-  height: 24px;
+  height: 30px;
+
+}
+#content {
+  font-size: 1.3rem;
+}
+
+#searchButton {
+  border: none;
+  text-align: center;
+}
+#searchButton:hover {
+  background-color: grey;
 }
