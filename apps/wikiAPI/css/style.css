@@ -1,25 +1,39 @@
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
 .background {
-  background-image: url("http://i68.tinypic.com/20v18i0.jpg");
+  background-image: url("../../../img/backgrounds/wiki_background.jpg");
   background-repeat: no-repeat;
-  background-position: center; 
+  background-position: center;
   background-attachment: fixed;
   background-size: cover;
   min-height: 100vh;
   opacity: 0.9;
 }
-#content{
+.fullWidth {
+  width: 240px;
+  margin: auto 0;
+}
+.margint10{
  margin-top: 10%;
 }
 
-#result div { 
+@media screen and (min-width: 768px){
+  .fullWidth a {
+    width: 500px;
+  }
+}
+
+#result div {
   background-color: white;
-  opacity: 0.9;   
+  opacity: 0.9;
 }
 
 h2{
   padding-left: 30px;
   padding-top: 30px;
-} 
+}
 .snippet{
  padding-left: 30px;
  padding-bottom: 30px;
@@ -37,4 +51,14 @@ h2{
 label, input, #searchButton {
   display: inline-block;
 }
-
+input {
+  width: 150px;
+  margin-right: 0;
+}
+#searchButton {
+  width: 80px;
+  margin-left: 0;
+}
+.setheight {
+  height: 24px;
+}

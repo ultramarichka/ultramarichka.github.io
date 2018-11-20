@@ -4,41 +4,44 @@
   <meta charset="UTF-8">
   <title>Weather Application</title>
   <meta content-type="text/html" charset="utf-8">
-  
-  <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
-<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Lobster'>
 
-      <link rel="stylesheet" href="css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Lobster'>
+
+  <link rel="stylesheet" href="css/style.css">
+
+
 </head>
 
 <body>
   <div class="container-fluid">
-  <div id="background" class="row">
+    <div id="background" class="row">
+      <div class="col">
 
-    <h1>Weather Application</h1>
-    <h3>Current weather in your city</br>(or enter the city:)
-    </h3>
+        <h1>Weather Application</h1>
+        <h3>Current weather in your city</br>(or enter the city:)
+        </h3><br>
 
-    <div class="row">
-      <input id="cities" type="text"> 
-      <button id="get_weather">Get weather</button> 
+        <input id="cities" type="text">
+        <button id="get_weather">Get weather</button>
+        <br>
+
+        <div id="temp"></div>
+        <button id="convertTemp">Convert to Fahrenheit</button>
+
+        <img id="icon" src="">
+
+      </div>
     </div>
-
-    <div class="row">
-      <div id="temp"></div>  
-      <button id="convertTemp">Convert to Fahrenheit</button>
-    </div>
-
-    <img id="icon" src="">
-
   </div>
-</div>
-  
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
 
-    <script  src="js/index.js"></script>
+  <script
+			  src="https://code.jquery.com/jquery-3.3.1.min.js"
+			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+			  crossorigin="anonymous"></script>
+  <script  src="js/index.js"></script>
 
 </body>
 </html>

@@ -6,9 +6,9 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>-->
-  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css'>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+        crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet" type="text/css">
 
   <link rel="stylesheet" href="css/normalize.min.css">
@@ -18,6 +18,7 @@
 			  src="https://code.jquery.com/jquery-3.3.1.min.js"
 			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 			  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.com/libraries/fullPage.js"></script>
   <script src="js/index.js"></script>
 </head>
 
@@ -28,34 +29,164 @@
         <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
         <ul class="nav-list">
           <li>
-            <a href="#!">Home</a>
+            <a href="#home">Home</a>
           </li>
           <li class="tochka">&#9899;</li>
           <li>
-            <a href="#!">About</a>
+            <a href="#about">About</a>
           </li>
           <li class="tochka">&#9899;</li>
           <li>
-            <a href="#!">Projects</a>
+            <a href="#projects">Projects</a>
           </li>
           <li class="tochka">&#9899;</li>
           <li>
-            <a href="#!">Contacts</a>
+            <a href="#contacts">Contacts</a>
           </li>
         </ul>
       </nav>
     </div>
   </section>
 
-  <main>
+  <main id="fullpage">
 
-    <div id="home" class="backgrounds-maryna hminus50">
+    <div id="home" class="backgrounds-maryna fullPageScroll section">
       <h1>Maryna's Portfolio
       </h1>
       <!--<hr width=80%>-->
     </div>
 
-    <div id="about" class="backgrounds-maryna">
+    <div id="projects" class="backgrounds-maryna">
+
+      <h1 class="centered">My Projects
+      </h1>
+
+      <div class="container margint30 marginb30">
+        <div class="row marginb30">
+          <div class="half column">
+            <!--Simon-->
+            <div class="Project_boxes">
+              <a href="apps/Simon/index.html" target="_blank">
+              <div class="image_Projects" >
+                <img src="img/ProjectPict/thumbnails/simon.png" style="width: 100%;">
+              </div>
+              </a>
+              <div class="Caption_Projects">
+                Simon Game
+              </div>
+            </div>
+          </div>
+
+          <div class="half column">
+            <!--Pomodoro-->
+            <div class="Project_boxes">
+              <a href="apps/Pomodoro/index.html" target="_blank">
+              <div class="image_Projects">
+                <img src="img/ProjectPict/thumbnails/pomodoro.png" style="width: 100%;">
+              </div>
+              </a>
+              <div class="Caption_Projects">
+                Tomato timer
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row marginb30">
+          <div class="half column">
+            <!--Wiki API-->
+            <div class="Project_boxes">
+              <a href="apps/wikiAPI/index.html" target="_blank">
+              <div class="image_Projects">
+                <img src="img/ProjectPict/thumbnails/wiki.jpg" style="width: 100%;">
+              </div>
+              </a>
+              <div class="Caption_Projects">
+                WikiSearcher
+              </div>
+            </div>
+          </div>
+
+          <div class="half column">
+            <!--Weather-->
+            <div class="Project_boxes">
+              <a href="weatherAPI/index.html" target="_blank">
+              <div class="image_Projects">
+                <img src="img/ProjectPict/thumbnails/weather.jpg" style="width: 100%;">
+              </div>
+              </a>
+              <div class="Caption_Projects">
+                Weather application
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row marginb30">
+          <div class="half column">
+            <!--Calculator-->
+            <div class="Project_boxes">
+                <a href="Calculator/index.html" target="_blank">
+                <div class="image_Projects">
+                  <img src="img/ProjectPict/thumbnails/calc.png" style="width: 100%;">
+                </div>
+                </a>
+                <div class="Caption_Projects">
+                  Calculator
+                </div>
+            </div>
+          </div>
+
+          <div class="half column">
+            <!--Slider-->
+            <div class="Project_boxes">
+                <a href="slider/index.html" target="_blank">
+                <div class="image_Projects"  id="slider">
+                  <img src="img/ProjectPict/thumbnails/slider.png" style="width: 100%;">
+                </div>
+                </a>
+                <div class="Caption_Projects">
+                  Vanilla Slider
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row marginb30">
+          <div class="half column">
+            <!--Citation-->
+            <div class="Project_boxes">
+                <a href="citation/index.html" target="_blank">
+                <div class="image_Projects">
+                  <img src="img/ProjectPict/thumbnails/citation.jpg" style="width: 100%;">
+                </div>
+                </a>
+                <div class="Caption_Projects">
+                  Random Citation
+                </div>
+            </div>
+          </div>
+
+          <div class="half column">
+            <!--Timestamp Microservice-->
+             <div class="Project_boxes">
+                 <a href="https://phantom-territory.glitch.me/" target="_blank">
+                 <div class="image_Projects">
+                   <img src="img/ProjectPict/thumbnails/time_micro.png" style="width: 100%;">
+                 </div>
+                 </a>
+                 <div class="Caption_Projects">
+                   Timestamp Microservice
+                 </div>
+             </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="about" class="backgrounds-maryna fullPageScroll section">
 
       <div class="container margint30 marginb30">
         <div class="row">
@@ -76,10 +207,10 @@
                 <ul class="nolist">
                   <li>to buy tickets</li>
                   <li>to make an appointment with a doctor</li>
-                  <li>to find some information</li>
+                  <li>to find some information, ...</li>
                 </ul>
                 Impossible!<br>
-                With help of web developers our everyday life becomes more efficient & useful.<br><br>
+                With help of web developers our everyday life becomes more efficient and useful.<br><br>
                 For me coding is fun and creative.
                 The more new knowledge I get the better I understand the world.<br>
               </font>
@@ -114,7 +245,7 @@
     </div>
 
     <!--CONTACTS-------------------------------------->
-    <div id="contacts" class="backgrounds-maryna hminus50">
+    <div id="contacts" class="backgrounds-maryna hminus50 fullPageScroll section">
       <div class="container">
         <div class="row">
 
@@ -122,15 +253,13 @@
             <h3><b>Contact Maryna Sokolova<br>
             maryna.sokolova11@gmail.com</b></h3>
 
-            <p><a class="btn btn-codepen buttons" href="https://codepen.io/ultramarichka" target="_blank"><i class="fa fa-codepen"></i> CodePen </a></p>
+            <p><a href="https://codepen.io/ultramarichka" target="_blank" class="btn-codepen buttons"><i class="fab fa-codepen"></i> CodePen </a></p>
 
-            <p><a id="github" href="https://github.com/ultramarichka" class="btn btn-default buttons" target="_blank"><i class="fa fa-github"></i> GitHub</a></p>
+            <p><a href="https://github.com/ultramarichka" target="_blank" class="btn-github buttons"><i class="fab fa-github"></i> GitHub</a></p>
 
-            <!--<p><a id="Vkontakte" class="btn btn-primary buttons" href="https://vk.com/id9161150" target="_blank"><i class="fa fa-vk"></i> Vkontakte</a></p>-->
+            <p><a href="https://www.freecodecamp.com/ultramarichka" target="_blank" class="btn-fcc buttons"><i class="fab fa-free-code-camp"></i> FreeCodeCamp</a></p>
 
-            <p><a href="https://www.freecodecamp.com/ultramarichka" target="_blank" class="btn  btn-success buttons"><span class="glyphicons glyphicons-robot"></span><i class="fa fa-fire"></i> FreeCodeCamp</a></p>
-
-            <p><a href="https://www.facebook.com/maryna.sokolova.77" target="_blank" class="btn btn-primary buttons"><i class="fa fa-facebook-f"></i> Facebook</a></p>
+            <p><a href="https://www.facebook.com/maryna.sokolova.77" target="_blank" class="btn-fb buttons"><i class="fab fa-facebook-f"></i> Facebook</a></p>
 
 
           </div>
