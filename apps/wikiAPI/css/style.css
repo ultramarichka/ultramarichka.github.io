@@ -15,6 +15,14 @@ html, body {
 .margint10{
  margin-top: 10%;
 }
+@media screen and (min-width: 768px){
+  .margint10{
+   margin-top: 20%;
+  }
+}
+.marginb50 {
+  margin-bottom: 50px;
+}
 
 #result div {
   background-color: white;
@@ -46,18 +54,58 @@ label, input, #searchButton {
 #content a, input, #searchButton {
   width: 100%;
 }
-.setheight {
-  height: 30px;
+input {
 
+  /*box-shadow: inset 0px 0px 2px #cecece; /*inset 0px -1px #cecece;/*0 1px 2px rgba(0,0,0,.9), 0 -1px #cecece;*/
+
+  border: 1px solid transparent;
+  border-top: none;
+  border-left: none;
+  box-shadow: inset 1px 2px 2px rgba(0,0,0,.79), 0 -1px 1px rgba(0, 0, 0, 0.6), 0 1px 0 rgba(0, 0, 0, 0.6);
+  padding-left: 10px;
+  padding-right: 10px;
 }
-#content {
-  font-size: 1.3rem;
+.setheight {
+  height: 25px;
+}
+#content, .btn {
+  font-size: 1.1rem;
+}
+@media screen and (min-width: 768px){
+  #content, .btn {
+    font-size: 1.3rem;
+  }
+  .setheight {
+    height: 30px;
+  }
+}
+
+#content a {
+  background-color: #cecece;
+  color: black;
+  border: none;
+  border-radius: 0;
+  text-align: center;
+  box-shadow: 2px 2px 5px 5px rgb(0,0, 0, 0.5), 1px 1px 1px 1px rgb(0,0, 0, 0.5);
+}
+#content a:hover {
+  background-color: darkgrey;
 }
 
 #searchButton {
+  background-color: coral;
+  color: black;
   border: none;
   text-align: center;
+  box-shadow: 2px 2px 5px 5px rgb(0,0, 0, 0.5), 1px 1px 1px 1px rgb(0,0, 0, 0.5);
 }
 #searchButton:hover {
-  background-color: grey;
+  background-color: #b7170a;
+  color: white;
+}
+ button:hover, :active, :focus {
+   outline: 0;
+}
+input::-moz-focus-inner {
+  border: 0;
 }

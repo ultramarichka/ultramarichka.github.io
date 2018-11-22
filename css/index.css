@@ -1,6 +1,10 @@
 html {
   box-sizing: border-box;
 }
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
 *, *:before, *:after {
   box-sizing: inherit;
 }
@@ -88,7 +92,7 @@ nav ul li a:hover/*,
   }
   nav {
     width: 100%;
-    padding: 50px 0 15px;
+    padding-top: 50px;
   }
   nav ul {
     display: none;
@@ -96,9 +100,23 @@ nav ul li a:hover/*,
   nav ul li {
     float: none;
   }
-  nav ul li a {
+  /*nav ul li a {
     padding: 15px;
     line-height: 20px;
+  }*/
+  nav ul li a,
+  nav ul li a:visited,
+  nav ul li a:hover {
+    padding: 0 30px;
+    line-height: 30px;
+    background: #133838;
+    color: white;
+    margin: 0;
+    border: none;
+  }
+  nav ul li a:hover {
+    background-color: #80ecec;
+    color: black;
   }
 }
 
@@ -228,11 +246,22 @@ h3 {
   margin-top: 30px;
 }
 .marginb30 {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+}
+.paddingb50 {
+  padding-bottom: 50px !important;
+}
+@media only screen and (max-width: 767px) {
+  .marginb20xs {
+    margin-bottom: 20px;
+  }
 }
 @media only screen and (min-width: 768px) {
   .marginl50 {
     margin-left: 50%;
+  }
+  .marginb30 {
+    margin-bottom: 30px;
   }
 }
 /*grid system*/
@@ -457,7 +486,14 @@ a.buttons {
   border-width: 1px 0 0 0;
   border-color: black;
   border-style: solid;
-  font-size: 20px;
+  font-size: 1rem;
   text-align: center;
   font-family: Arial;
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+@media screen and (min-width: 768px) {
+  .Caption_Projects {
+    font-size: 1.3rem;
   }
+}

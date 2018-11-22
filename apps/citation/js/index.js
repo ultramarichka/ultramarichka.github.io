@@ -16,10 +16,10 @@ var myQuotes = [
     "textLink":"http://www.brainyquote.com/quotes/quotes/v/vladimirle180597.html",
     "quoteText":"Our program necessarily includes the propaganda of atheism.", 
     "author":"― Vladimir Lenin"
-}, {
+  }, {
   "quoteText":"We know the past but cannot control it. We control the future but cannot know it.",
   "author":"— Claude Shannon" 
-}, {
+  }, {
   "quoteText":"Самое дорогое у человека - это жизнь. Она дается ему один раз, и прожить её надо так, чтобы не было мучительно больно за бесцельно прожитые годы, чтобы не жег позор за подленькое и мелочное прошлое и чтобы умирая, смог сказать: вся жизнь и все силы были отданы самому прекрасному в мире - борьбе за освобождение человечества. И надо спешить жить. Ведь нелепая болезнь или какая-нибудь трагическая случайность могут прервать её.",
   "author":'— Островский, "Как закалялась сталь"' 
   }, {
@@ -88,7 +88,9 @@ var myQuotes = [
   }, {  
   "quoteText":"Should graffiti be judged on the same level as modern art? Of course not: It's way more important than that.",
    "author":"― Banksy"  
-}];
+  }, {
+  "quoteText":"If you plan for one year, plant rice. If you plan for ten years, plant trees. If you plan for 100 years, educate humanity.",
+  "author":"― Chinese Proverb"}];
 
 
 $(document).ready(function() {
