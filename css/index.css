@@ -184,7 +184,7 @@ h1 {
 h3 {
   font-size: 1rem;
 }
-/*#contacts_text h3 {
+/*.contacts_text h3 {
   color: white;
 }*/
 
@@ -194,11 +194,6 @@ h3 {
   }
   h3 {
     font-size: 1.3rem;
-  }
-  #contacts_text {
-    position: relative;
-    margin-top: 15vh;
-    left: 50%;
   }
 }
 @media screen and (min-width: 992px) {
@@ -247,6 +242,9 @@ h3 {
 }
 .marginb30 {
   margin-bottom: 20px;
+}
+.marginb50 {
+  margin-bottom: 50px;
 }
 .paddingb50 {
   padding-bottom: 50px !important;
@@ -311,138 +309,18 @@ h3 {
   }
 }
 /*end of grid system*/
-/*ABOUT*/
-
-font {
-  font-size: 0.8rem;
-}
-@media only screen and (min-width: 768px) {
-  font {
-    font-size: 1.2rem;
-  }
-}
-#certificate {
-  vertical-align: middle;
-  display: inline-block;
-  height: auto;
-  width: 80px;
-  cursor: pointer;
-}
-ul.nolist {
-  list-style-type: none;
-  margin: 5px 0;
-  padding-left: 15px;
-}
-ul.nolist li::before {
-  content: "- ";
-}
-.firstli::before {
-  content: "You need ";
-}
-#competences {
-  font-size: 1.1rem;
-}
-#competencesul {
-  font-weight: 700;
-  line-height: 25px;
-}
-#me {
-  border-color: gray;
-  border-width: 5px;
-  border-style: solid;
-  border-radius: 50%;
-  /*margin: 10% 0 0 0;*/
-  max-width:100%;
-  max-height:100%;
-}
-/*end of ABOUT*/
-
-/*CONTACTS*/
-a.buttons {
-  text-decoration: none;
-}
-.buttons {
-  margin: 10px;
-  padding: 6px 12px;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.42857143;
-
-  display: inline-block;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  -ms-touch-action: manipulation;
-  touch-action: manipulation;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  background-image: none;
-  border: 1px solid transparent;
-  border-radius: 4px;
-}
-
-.btn-codepen {
-  background-color: black;
-  color: #FFF;
-}
-.buttons:hover {
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.5), 0 17px 50px 0 rgba(0,0,0,0.1);
-}
-.btn-codepen:hover, .btn-codepen:focus {
-  color: #A9A9A9;
-  outline: none !important;
-}
-/*.buttons:active {
-  outline: none !important;
-}*/
-
-.btn-github{
-  background-color: white;
-  /*border: 2px solid #A9A9A9;*/
-  color: black;
-}
-.btn-fcc {
-  background-color: green;
-  color: white;
-}
-.btn-fb {
-  background-color: #4267b2;
-  color: white;
-}
 
 
 /*PROJECTS*/
 .Project_boxes {
   padding-left: 0;
   padding-right: 0;
+  border: 3px solid #cecece;
 }
 .Project_boxes:hover {
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.3), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
-/*
-.icon {
-  text-align: center;
-  display: block;
-  margin: auto;
-  font-size: 70px;
-  color: blue;
-  opacity: 0.5;
-  position: absolute;
-  top: 27%; left: 15px; bottom: 30px; right: 15px;
-}
-.background-icon {
-  opacity: 0.3;
-  position: absolute;
-  display: block;
-  background: black;
-  top: 0; left: 0; bottom: 30px; right: 0;
-}*/
-.Project_boxes {
-  border: 3px solid #cecece;
-}
+
 .image_Projects {
     position:relative;
 }
@@ -498,6 +376,125 @@ a.buttons {
   }
 }
 
+/*ABOUT*/
+font {
+  font-size: 0.8rem;
+}
+@media only screen and (min-width: 768px) {
+  font {
+    font-size: 1.2rem;
+  }
+}
+#certificate {
+  vertical-align: middle;
+  display: inline-block;
+  height: auto;
+  width: 80px;
+  cursor: pointer;
+}
+ul.nolist {
+  list-style-type: none;
+  margin: 5px 0;
+  padding-left: 15px;
+}
+ul.nolist li::before {
+  content: "- ";
+}
+.firstli::before {
+  content: "You need ";
+}
+#competences {
+  font-size: 1.1rem;
+}
+#competencesul {
+  font-weight: 700;
+  line-height: 25px;
+}
+#me {
+  border-color: gray;
+  border-width: 5px;
+  border-style: solid;
+  border-radius: 50%;
+  /*margin: 10% 0 0 0;*/
+  max-width:100%;
+  max-height:100%;
+}
+/*end of ABOUT*/
+
+/*CONTACTS*/
+#contacts_content {
+  position: relative;
+  margin-top: 15vh;
+  z-index: 1002;
+  width: 640px;
+  margin: 0 auto;
+}
+
+hr {
+  color: black;
+  background-color: black;
+  height: 1px;
+}
+a.buttons {
+  text-decoration: none;
+}
+.contacts_buttons {
+  text-align: center;
+}
+.buttons {
+  padding: 6px 12px;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.42857143;
+
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.btn-codepen {
+  margin-right: 20px;
+  background-color: black;
+  color: #FFF;
+}
+.buttons:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.5), 0 17px 50px 0 rgba(0,0,0,0.1);
+}
+.btn-codepen:hover, .btn-codepen:focus {
+  color: #A9A9A9;
+  outline: none !important;
+}
+/*.buttons:active {
+  outline: none !important;
+}*/
+
+.btn-github{
+  margin:  0 20px;
+  background-color: white;
+  /*border: 2px solid #A9A9A9;*/
+  color: black;
+}
+.btn-fcc {
+  margin:  0 20px;
+  background-color: green;
+  color: white;
+}
+.btn-fb {
+  margin-left: 20px;
+  background-color: #4267b2;
+  color: white;
+}
 
 /**BUBBLES*/
 /*#contacts {
@@ -603,6 +600,7 @@ a.buttons {
 #video {
   background-color: black;
   position: absolute;
+  width: 100%;
 }
 #video video {
   width: 100%;
@@ -616,6 +614,7 @@ a.buttons {
 }
 @media screen and (min-width: 768px) {
   #video video {
-    transform: translate(0, -50%);
+    width: auto;
+    /*transform: translate(0, -50%);*/
   }
 }
