@@ -422,26 +422,47 @@ ul.nolist li::before {
 /*end of ABOUT*/
 
 /*CONTACTS*/
+.white {
+  color: white;
+}
 #contacts_content {
   position: relative;
   margin-top: 15vh;
   z-index: 1002;
-  width: 640px;
   margin: 0 auto;
 }
+
 
 hr {
   color: black;
   background-color: black;
   height: 1px;
+  margin: 40px auto 10px auto;
 }
+@media screen and (min-width: 768px){
+  #contacts_text div.column {
+    padding: 0;
+  }
+  #contacts_content {
+    width: 640px;
+    margin-top: 25vh;
+  }
+  hr {
+    margin: 60px auto 30px auto;
+  }
+  br.xs {
+    display: none;
+  }
+  .contacts_buttons {
+    text-align: center;
+  }
+}
+
 a.buttons {
   text-decoration: none;
 }
-.contacts_buttons {
-  text-align: center;
-}
 .buttons {
+  margin: 10px 20px;
   padding: 6px 12px;
   font-size: 1rem;
   font-weight: 400;
@@ -462,9 +483,12 @@ a.buttons {
   border: 1px solid transparent;
   border-radius: 4px;
 }
-
+.hire{
+  color: white;
+  background-color: #b7170a;
+  margin: 10px auto 0px auto;
+}
 .btn-codepen {
-  margin-right: 20px;
   background-color: black;
   color: #FFF;
 }
@@ -479,23 +503,33 @@ a.buttons {
   outline: none !important;
 }*/
 
-.btn-github{
-  margin:  0 20px;
+.btn-github {
   background-color: white;
   /*border: 2px solid #A9A9A9;*/
   color: black;
 }
 .btn-fcc {
-  margin:  0 20px;
   background-color: green;
   color: white;
 }
 .btn-fb {
-  margin-left: 20px;
   background-color: #4267b2;
   color: white;
 }
-
+@media screen and (min-width: 768px){
+  .btn-codepen {
+    margin:  0 auto 0 0;
+    float: left;
+  }
+  .btn-github,
+  .btn-fcc {
+    margin: 0 30px;
+  }
+  .btn-fb {
+    margin: 0 0 0 auto;
+    float: right;
+  }
+}
 /**BUBBLES*/
 /*#contacts {
   background: #09f;
