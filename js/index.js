@@ -110,5 +110,22 @@
     }
 
     bubbles();
+
+    var flag = true;
+
+    function showText(){
+      if (!flag) {
+        $("#hidden_text").css("display", "none");
+        $("#about_show_text").html("Read more..");
+        flag = true;
+      } else {
+        $("#hidden_text").css("display", "block");
+        $("#about_show_text").html("Show less");
+        flag = false;
+      }
+
+    }
+
+    $("#about_show_text").click(showText);
   }); // end DOM ready
 })(jQuery); // end jQuery
