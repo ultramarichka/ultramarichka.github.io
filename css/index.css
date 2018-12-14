@@ -241,6 +241,9 @@ h3 {
 .margint30 {
   margin-top: 30px;
 }
+.margint60 {
+  margin-top: 60px;
+}
 .marginb30 {
   margin-bottom: 20px;
 }
@@ -437,6 +440,7 @@ ul.nolist li::before {
   text-decoration: underline;
 }
 hr {
+  width: 600px;
   padding: 0 20px;
   color: black;
   background-color: black;
@@ -444,16 +448,15 @@ hr {
   margin: 40px auto 10px auto;
 }
 @media screen and (min-width: 768px){
-  #contacts_text div.column {
+  #contacts_text {
     padding: 0;
+    text-align: center;
   }
   #contacts_content {
     width: 640px;
     margin-top: 25vh;
   }
-  hr {
-    margin: 60px auto 30px auto;
-  }
+
   br.xs {
     display: none;
   }
@@ -487,8 +490,12 @@ a.buttons {
   border-radius: 50%;
   width: 40px;
   height: 40px;
+  border: 1px solid white;
 }
+.buttons:hover {
+  box-shadow: 5px 5px 5px 0 rgba(0,0,0,0.3);/*, 0 17px 50px 0 rgba(0,0,0,0.1);*/
 
+}
 .hire{
   text-decoration: none;
   margin: 10px 20px;
@@ -571,13 +578,14 @@ a.buttons {
 .btn-codepen {
   background-color: black;
   color: #FFF;
+
 }
-.buttons:hover {
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.5), 0 17px 50px 0 rgba(0,0,0,0.1);
-}
-.btn-codepen:hover, .btn-codepen:focus {
+
+.btn-codepen:hover,
+.btn-codepen:focus {
   color: #A9A9A9;
   outline: none !important;
+  border: 1px solid black;
 }
 /*.buttons:active {
   outline: none !important;
@@ -587,24 +595,29 @@ a.buttons {
   background-color: white;
   /*border: 2px solid #A9A9A9;*/
   color: black;
+  border: 1px solid black;
 }
 .btn-github:hover {
   background-color: #e6e6e6;
+  border: 1px solid #e6e6e6;
 }
 .btn-fcc {
   /*border-color: #398439;*/
-  background-color: green;
+  background-color: #009300;
   color: white;
 }
 .btn-fcc:hover {
-  background-color: darkgreen;
+  background-color: #004d00;
+  border: 1px solid rgb(0, 120, 0);
+
 }
 .btn-fb {
   background-color: #4267b2;
   color: white;
 }
 .btn-fb:hover {
-  background-color: #286090;
+  background-color: #173854;
+  border: 1px solid #173854;
 }
 
 /**BUBBLES*/
