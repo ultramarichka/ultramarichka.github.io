@@ -225,6 +225,16 @@ h3 {
   min-height: 100vh;
 }
 
+/*Home*/
+#atmosphare {
+  z-index: 2;
+  background: radial-gradient(ellipse at 50% 100%, lightgrey 0%, #2ab8d9 15%, #02b7e3 20%, #005f9f 35%, black 70%);
+  bottom: 0;
+  height: 80px;
+  position: absolute;
+  width: 100%;
+}
+
 
 #projects {
   background-color: rgb(239,221,111, 0.5);/* #EFDD6F; sand /*#e7fbfb;*/
@@ -554,7 +564,7 @@ a.buttons {
   border-radius: 50%;
   width: 40px;
   height: 40px;
-  border: 1px solid white;
+  /* border: 1px solid white; */
 }
 .buttons:hover {
   box-shadow: 5px 5px 5px 0 rgba(0,0,0,0.3);/*, 0 17px 50px 0 rgba(0,0,0,0.1);*/
