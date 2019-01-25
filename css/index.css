@@ -243,7 +243,7 @@ h3 {
   background-attachment: scroll;
   width: 300%;
   margin-left: -100%;
-  height: 250px;
+  height: 10em;
   background-image: radial-gradient(farthest-corner at 50% 180%,
     lightgrey 40%, #2ab8d9 45%, #02b7e3 46%, #005f9f 48%, black 65%);
 }
@@ -261,8 +261,14 @@ h3 {
   z-index: 2;
   width: 100%;
   font-size: 10px;
-  height: 17em;
+  height: 10em;
 }
+@media screen and (min-width: 768px){
+  #water_surface, #projects_atmosphare {
+    height: 17em;
+  }
+}
+
 
 #about {
   /*background-color: rgb(130,225,227, 0.5); #82e1e3;*/
@@ -322,9 +328,11 @@ h3 {
 .one,
 .one-third,
 .two-thirds,
-.one-fourth,
 .half {
   width: 100%;
+}
+.one-fourth {
+  width: 50%;
 }
 .column {
   padding: 0 20px;
@@ -475,6 +483,20 @@ h3 {
 }
 
 /*ABOUT*/
+@media screen and (max-width: 767px){
+  .xs_container_for_two {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+@media screen and (min-width: 768px){
+  .centralize_child {
+    display: flex;
+    align-items: center;
+  }
+}
+
+
 #about_show_text {
   cursor: pointer;
   text-decoration: underline;
@@ -516,15 +538,23 @@ ul.nolist li::before {
   font-weight: 700;
   line-height: 25px;
 }
+@media screen and (min-width: 768px){
+  .competences {
+    font-size: 2rem;
+  }
+  .competencesul {
+    line-height: 1.8em;
+    font-size: 1.4em;
+  }
+}
 #me {
-  float: right;
-  border-color: white;
-  border-width: 5px;
-  border-style: solid;
+  /* float: right; */
+  border: 5px solid white;
   border-radius: 50%;
-  /*margin: 10% 0 0 0;*/
   max-width:100%;
   max-height:100%;
+  display: block;
+  margin: auto;
 }
 /*end of ABOUT*/
 
