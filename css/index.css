@@ -31,7 +31,7 @@ html, body {
 /* navigation */
 .navigation {
   height: 50px;
-  /* background: var(--navcolor); */
+  background: var(--navcolor);
   background: linear-gradient(60deg, var(--atmosphare1), var(--atmosphare3) 30%, #000044);
   box-shadow: 8px 8px 6px 6px white;
 }
