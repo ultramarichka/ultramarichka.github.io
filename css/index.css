@@ -6,6 +6,10 @@
    radial-gradient(100% 100% at x-in-bounding-box y-in-bounding-box) x y / width height
 */
 :root {
+  --atmosphare1: #2ab8d9;
+  --atmosphare2: #02b7e3;
+  --atmosphare3: #005f9f;
+
   --water: #02857f;
   --surface: white;
   --air: whitesmoke;
@@ -27,7 +31,8 @@ html, body {
 /* navigation */
 .navigation {
   height: 50px;
-  background: var(--navcolor);
+  /* background: var(--navcolor); */
+  background: linear-gradient(60deg, var(--atmosphare1), var(--atmosphare3) 30%, #000044);
   box-shadow: 8px 8px 6px 6px white;
 }
 
@@ -67,7 +72,6 @@ nav ul li a:visited {
   display: block;
   padding: 0 80px;
   line-height: 50px;
-  background: var(--navcolor);
   color: var(--navfont);
   text-decoration: none;
 }
@@ -94,7 +98,6 @@ nav ul li a:hover/*,
   position: absolute;
   top: 0;
   right: 0;
-  background: var(--navcolor);/*#262626;*/
   height: 50px;
   width: 50px;
 }
@@ -125,7 +128,6 @@ nav ul li a:hover/*,
   nav ul li a:hover {
     padding: 0 30px;
     line-height: 30px;
-    background: var(--navcolor);
     color: var(--navfont);
     margin: 0;
     border: none;
@@ -249,7 +251,7 @@ h3 {
   margin-left: -100%;
   height: 10em;
   background-image: radial-gradient(farthest-corner at 50% 180%,
-    lightgrey 40%, #2ab8d9 45%, #02b7e3 46%, #005f9f 48%, black 65%);
+    lightgrey 40%, var(--atmosphare1) 45%, var(--atmosphare2) 46%, var(--atmosphare3) 48%, black 65%);
 }
 #projects {
   background-color: lightgrey;/* #EFDD6F; sand /*#e7fbfb;*/
