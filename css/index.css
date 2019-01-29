@@ -259,6 +259,21 @@ h3 {
   background: linear-gradient(lightgrey 0%, whitesmoke 90%);
   background-attachment: scroll;
 }
+#oneCloud {
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  background-image: url('../img/cloud.svg');
+  background-repeat: no-repeat;
+  transform: scale(2);
+  animation: mymove 25s infinite;
+}
+@keyframes mymove {
+  from {margin-top: 15%;
+        right: 0px;}
+   to {margin-top: 10%;
+      right: 100%;}
+}
 #water_surface {
   background:
     radial-gradient(130% 200% at 50% -30%, var(--air) 40%, var(--surface) 50%, var(--water) 55%) 0 0 / 75% 100%,
