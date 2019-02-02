@@ -298,7 +298,8 @@ h3 {
   background-attachment: scroll;
 }
 #contacts {
-    background-color: #1f3f9f;
+    /* background-color: #1f3f9f; */
+    background-image: url('../img/contact.png');
 }
 
 /*MARGINS PADDINGS*/
@@ -580,15 +581,29 @@ ul.nolist li::before {
 /*end of ABOUT*/
 
 /*CONTACTS*/
-.white {
+#video_container {
+  background-color: black;
+  position: relative;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+#video_container video {
+  width: 100%;
+  height: 100%;
+}
+/* @media screen and (min-width: 768px) {
+  #video video {
+    width: 640px;
+  }
+} */
+
+#contacts_div {
+  position: absolute;
   color: white;
 }
-#contacts_content {
-  position: relative;
-  margin-top: 15vh;
-  z-index: 1002;
-  margin: 0 auto;
-}
+
+
 
 .underline {
   text-decoration: underline;
@@ -604,10 +619,10 @@ hr {
     padding: 0;
     text-align: center;
   }
-  #contacts_content {
+  /* #contacts_content {
     width: 640px;
     margin-top: 25vh;
-  }
+  } */
 
   br.xs {
     display: none;
@@ -848,24 +863,3 @@ a.buttons {
  }
 }
 /*END OF BUBBLES*/
-#video {
-  background-color: black;
-  position: absolute;
-  width: 100%;
-}
-#video video {
-  width: 100%;
-  height: auto;
-  position: relative;
-  top: 50vh;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%); /* IE 9 */
-  -webkit-transform: translate(-50%, -50%); /* Safari */
-}
-@media screen and (min-width: 768px) {
-  #video video {
-    width: 640px;
-    /*transform: translate(0, -50%);*/
-  }
-}
