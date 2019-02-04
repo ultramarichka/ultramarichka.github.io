@@ -294,7 +294,7 @@ h3 {
 #about {
   /*background-color: rgb(130,225,227, 0.5); #82e1e3;*/
   /* background: linear-gradient(#c0f0f1, #0363c5); */
-  background: linear-gradient(#02857f , #7bc3b8);
+  background: linear-gradient(#02857f , #0266a1, #0244a3 98%); /* #7bc3b8 10%,*/
   background-attachment: scroll;
 }
 #contacts {
@@ -658,6 +658,13 @@ a.buttons {
   width: 40px;
   height: 40px;
   /* border: 1px solid white; */
+}
+@media screen and (min-width: 768px){
+  .buttons {
+    font-size: 1.7rem;
+    line-height: 60px;
+    width: 60px;
+    height: 60px;
 }
 .buttons:hover {
   box-shadow: 5px 5px 5px 0 rgba(0,0,0,0.3);/*, 0 17px 50px 0 rgba(0,0,0,0.1);*/
