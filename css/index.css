@@ -259,21 +259,97 @@ h3 {
   background: linear-gradient(lightgrey 0%, whitesmoke 90%);
   background-attachment: scroll;
 }
-#oneCloud {
+/*CLOUDS*/
+.clouds {
   height: 100px;
   width: 100px;
   position: absolute;
-  background-image: url('../img/cloud.svg');
+  background-image: url('../img/cloud2.svg');
   background-repeat: no-repeat;
+  transition-timing-function: linear;
+}
+#cloud1 {
   transform: scale(2);
-  animation: mymove 25s infinite;
+  animation: cloud1_move 25s infinite;
 }
-@keyframes mymove {
+
+@keyframes cloud1_move {
   from {margin-top: 15%;
-        right: 0px;}
-   to {margin-top: 10%;
-      right: 100%;}
+        right: -3vw;}
+   to {margin-top: 7%;
+      right: 103vw;}
 }
+#cloud2 {
+  background-color: pink;
+  transform: scale(2.5);
+  animation: cloud2_move 50s infinite;
+  margin-top: 30%;
+  right: -15vw;
+}
+
+@keyframes cloud2_move {
+  from {margin-top: 30%;
+        right: -15vw;
+      }
+   to {margin-top: 30%;
+      right: 103vw;}
+
+}
+#cloud3 {
+  transform: scale(3);
+  animation: cloud3_move 25s infinite;
+  margin-top: 60%;
+  right: -10vw;
+}
+
+@keyframes cloud3_move {
+  from {margin-top: 60%;
+        right: -10vw;}
+   to {margin-top: 55%;
+      right: 104vw;}
+}
+/* #cloud4 {
+  transform: scale(2);
+  animation: cloud4_move 50s infinite;
+
+  right: -3vw;
+}
+
+@keyframes cloud4_move {
+  from {margin-top: 80%;
+        right: -3vw;}
+   to {margin-top: 80%;
+      right: 103vw;}
+} */
+
+#cloud5 {
+  transform: scale(2.5);
+  animation: cloud5_move 60s infinite;
+  margin-top: 15%;
+  right: -72vw;
+}
+@keyframes cloud5_move {
+  from {margin-top: 15%;
+        right: -72vw;}
+   to {margin-top: 15%;
+      right: 104vw;}
+}
+#cloud6 {
+  background-color: black;
+  transform: scale(2);
+  animation: cloud6_move 50s infinite;
+  transition-timing-function: linear;
+  right: -90vw;
+}
+
+@keyframes cloud6_move {
+  from {margin-top: 45%;
+        right: -90vw;}
+   to {margin-top: 45%;
+      right: 104vw;}
+}
+
+/*END OF CLOUDS*/
 #water_surface {
   background:
     radial-gradient(130% 200% at 50% -30%, var(--air) 40%, var(--surface) 50%, var(--water) 55%) 0 0 / 75% 100%,
@@ -437,12 +513,11 @@ h3 {
 
 /*PROJECTS*/
 .Project_boxes {
+  position:relative;
   padding-left: 0;
   padding-right: 0;
   border: 3px solid #cecece;
   font-family: 'Dancing Script', cursive, Arial;
-}
-.Project_boxes:hover {
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.3), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
@@ -488,6 +563,7 @@ h3 {
 }
 
 .Caption_Projects {
+  position:relative;
   background-color: white;
   border-width: 1px 0 0 0;
   border-color: black;
