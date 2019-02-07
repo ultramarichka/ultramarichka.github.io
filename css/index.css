@@ -261,43 +261,72 @@ h3 {
 }
 /*CLOUDS*/
 .clouds {
-  height: 100px;
-  width: 100px;
+  height: 40px;
+  width: 40px;
   position: absolute;
   background-image: url('../img/cloud2.svg');
   background-repeat: no-repeat;
   transition-timing-function: linear;
 }
+@media screen and (min-width: 768px){
+  .clouds {
+    height: 100px;
+    width: 100px;
+  }
+}
 #cloud1 {
   transform: scale(2);
-  animation: cloud1_move 25s infinite;
+  animation: cloud1_move 25s linear infinite;
 }
 
 @keyframes cloud1_move {
-  from {margin-top: 15%;
+  from {margin-top: 15vh;
         right: -3vw;}
-   to {margin-top: 7%;
+   to {margin-top: 7vh;
       right: 103vw;}
 }
-#cloud2 {
-  background-color: pink;
-  transform: scale(2.5);
-  animation: cloud2_move 50s infinite;
-  margin-top: 30%;
-  right: -15vw;
+#cloud11 {
+ transform: scale(2.5);
+ animation: cloud5_move 25s linear 15s infinite;
+ margin-top: 15%;
+ right: -9vw;
+}
+@keyframes cloud5_move {
+ from {margin-top: 15%;
+       right: -9vw;}
+  to {margin-top: 15%;
+     right: 104vw;}
 }
 
+#cloud2 {
+  transform: scale(2.5);
+  animation: cloud2_move 30s linear 5s infinite;
+  margin-top: 30%;
+  right: -9vw;
+}
 @keyframes cloud2_move {
   from {margin-top: 30%;
-        right: -15vw;
+        right: -9vw;
       }
    to {margin-top: 30%;
       right: 103vw;}
-
 }
+
+#cloud22 {
+  transform: scale(2);
+  animation: cloud2_move 30s linear 20s infinite;
+  margin-top: 40%;
+  right: -9vw;
+}
+@keyframes cloud2_move {
+  from {right: -9vw;
+      }
+   to {right: 103vw;}
+}
+
 #cloud3 {
   transform: scale(3);
-  animation: cloud3_move 25s infinite;
+  animation: cloud3_move 25s linear infinite;
   margin-top: 60%;
   right: -10vw;
 }
@@ -308,44 +337,19 @@ h3 {
    to {margin-top: 55%;
       right: 104vw;}
 }
-/* #cloud4 {
-  transform: scale(2);
-  animation: cloud4_move 50s infinite;
 
-  right: -3vw;
+#kite {
+  background-image: url('../img/kite1.svg');
+  background-repeat: no-repeat;
+  transform: scale(2);
+  animation: kite_move 10s ease reverse infinite;
+  right: -9vw;
 }
 
-@keyframes cloud4_move {
-  from {margin-top: 80%;
-        right: -3vw;}
+@keyframes kite_move {
+  from {margin-top: 70%;
+        right: -9vw;}
    to {margin-top: 80%;
-      right: 103vw;}
-} */
-
-#cloud5 {
-  transform: scale(2.5);
-  animation: cloud5_move 60s infinite;
-  margin-top: 15%;
-  right: -72vw;
-}
-@keyframes cloud5_move {
-  from {margin-top: 15%;
-        right: -72vw;}
-   to {margin-top: 15%;
-      right: 104vw;}
-}
-#cloud6 {
-  background-color: black;
-  transform: scale(2);
-  animation: cloud6_move 50s infinite;
-  transition-timing-function: linear;
-  right: -90vw;
-}
-
-@keyframes cloud6_move {
-  from {margin-top: 45%;
-        right: -90vw;}
-   to {margin-top: 45%;
       right: 104vw;}
 }
 
