@@ -341,16 +341,30 @@ h3 {
 #kite {
   background-image: url('../img/kite1.svg');
   background-repeat: no-repeat;
-  transform: scale(2);
-  animation: kite_move 10s ease reverse infinite;
+
+  animation: kite_move 10s ease infinite;
   right: -9vw;
 }
 
 @keyframes kite_move {
-  from {margin-top: 70%;
-        right: -9vw;}
-   to {margin-top: 80%;
-      right: 104vw;}
+
+  0% {margin-top: 75%;
+        right: 90vw;
+        transform: scaleX(2);}
+  49% {
+    margin-top: 70%;
+        right: 9vw;
+        transform: scaleX(1);
+  }
+  50% {transform: scaleX(-1);
+  }
+  99% {margin-top: 75%;
+        right: 90vw;
+        transform: scaleX(-2);
+        /* transform: scaleX(-2); */
+        /* transform: scaleY(2); */
+        }
+  100% { transform: scaleX(2);}
 }
 
 /*END OF CLOUDS*/
