@@ -16,6 +16,14 @@
 
   --navcolor: #000044;
   --navfont: white;
+
+  --marginTCloud: 30vh;
+}
+
+@media screen and (min-width: 768px) {
+  :root {
+    --marginTCloud: 10%;
+  }
 }
 html {
   box-sizing: border-box;
@@ -280,65 +288,59 @@ h3 {
 }
 
 @keyframes cloud1_move {
-  from {margin-top: 15vh;
+  from {margin-top: calc(var(--marginTCloud)*1.5);
         right: -3vw;}
-   to {margin-top: 7vh;
+   to {margin-top: calc(var(--marginTCloud)*0.7);
       right: 103vw;}
 }
 #cloud11 {
  transform: scale(2.5);
- animation: cloud5_move 25s linear 15s infinite;
- margin-top: 15%;
+ animation: cloud11_move 25s linear 15s infinite;
+ margin-top: calc(var(--marginTCloud)*1.5);
  right: -9vw;
 }
-@keyframes cloud5_move {
- from {margin-top: 15%;
-       right: -9vw;}
-  to {margin-top: 15%;
-     right: 104vw;}
+@keyframes cloud11_move {
+ from {right: -9vw;}
+  to {right: 104vw;}
 }
 
 #cloud2 {
   transform: scale(2.5);
   animation: cloud2_move 30s linear 5s infinite;
-  margin-top: 30%;
+  margin-top: calc(var(--marginTCloud)*3);
   right: -9vw;
 }
 @keyframes cloud2_move {
-  from {margin-top: 30%;
-        right: -9vw;
-      }
-   to {margin-top: 30%;
-      right: 103vw;}
+  from {right: -9vw; }
+   to  {right: 103vw;}
 }
 
 #cloud22 {
   transform: scale(2);
   animation: cloud2_move 30s linear 20s infinite;
-  margin-top: 40%;
+  margin-top: calc(var(--marginTCloud)*4);
   right: -9vw;
 }
 @keyframes cloud2_move {
-  from {right: -9vw;
-      }
-   to {right: 103vw;}
+  from {right: -9vw; }
+   to  {right: 103vw;}
 }
 
 #cloud3 {
   transform: scale(3);
   animation: cloud3_move 25s linear infinite;
-  margin-top: 60%;
+  margin-top: calc(var(--marginTCloud)*6);
   right: -10vw;
 }
 
 @keyframes cloud3_move {
-  from {margin-top: 60%;
+  from {margin-top: calc(var(--marginTCloud)*6);
         right: -10vw;}
-   to {margin-top: 55%;
+   to {margin-top: calc(var(--marginTCloud)*5.5);
       right: 104vw;}
 }
 
-#kite {
+/* #kite {
   height: 1500px;
   width: 1500px;
   position: absolute;
@@ -346,9 +348,27 @@ h3 {
   background-repeat: no-repeat;
   margin-top: 55%;
   transform: scale(-0.5, 0.5);
-  /* animation: kite_move 10s ease infinite; */
+  /* animation: kite_move 10s ease infinite;
   right: -33vw;
+} */
+
+#image_kite {
+  height: 250px;
+  width: 225px;
+  right: -30vw;
+  margin-top: 440vh;
+  position: absolute;
+  transform: scaleX(-1);
 }
+@media screen and (min-width: 768px){
+  #image_kite {
+    height: 500px;
+    width: 450px;
+    margin-top: 80%;
+    right: -5vw;
+  }
+}
+
 
 /* @keyframes kite_move {
 
