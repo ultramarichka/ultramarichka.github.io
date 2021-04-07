@@ -90,7 +90,11 @@ var myQuotes = [
    "author":"― Banksy"  
   }, {
   "quoteText":"If you plan for one year, plant rice. If you plan for ten years, plant trees. If you plan for 100 years, educate humanity.",
-  "author":"― Chinese Proverb"}];
+  "author":"― Chinese Proverb"
+  }, {
+  "quoteText":"People who are crazy enough to think they can change the world, are the ones who do.",
+  "author":"― Rob Siltanen"  
+  }];
 
 
 $(document).ready(function() {
